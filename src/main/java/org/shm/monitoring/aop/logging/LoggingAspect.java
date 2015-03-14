@@ -26,9 +26,9 @@ public class LoggingAspect {
     private Environment env;
 
     @Pointcut("within(org.shm.monitoring.repository..*) || within(org.shm.monitoring.service..*) || within(org.shm.monitoring.web.rest..*)")
-    public void loggingPoincut() {}
+    public void loggingPointcut() {}
 
-    @AfterThrowing(pointcut = "loggingPoincut()", throwing = "e")
+    @AfterThrowing(pointcut = "loggingPointcut()", throwing = "e")
     public void logAfterThrowing(JoinPoint joinPoint, Throwable e) {
         if (env.acceptsProfiles(Constants.SPRING_PROFILE_DEVELOPMENT)) {
             log.error("Exception in {}.{}() with cause = {}", joinPoint.getSignature().getDeclaringTypeName(),
@@ -39,16 +39,18 @@ public class LoggingAspect {
         }
     }
 
-    @Around("loggingPoincut()")
+    @Around("loggingPointcut()")
     public Object logAround(ProceedingJoinPoint joinPoint) throws Throwable {
-        log.debug("Enter: {}.{}() with argument[s] = {}", joinPoint.getSignature().getDeclaringTypeName(),
-                joinPoint.getSignature().getName(), Arrays.toString(joinPoint.getArgs()));
-
+        if (log.isDebugEnabled()) {
+            log.debug("Enter: {}.{}() with argument[s] = {}", joinPoint.getSignature().getDeclaringTypeName(),
+                    joinPoint.getSignature().getName(), Arrays.toString(joinPoint.getArgs()));
+        }
         try {
             Object result = joinPoint.proceed();
-            log.debug("Exit: {}.{}() with result = {}", joinPoint.getSignature().getDeclaringTypeName(),
-                    joinPoint.getSignature().getName(), result);
-
+            if (log.isDebugEnabled()) {
+                log.debug("Exit: {}.{}() with result = {}", joinPoint.getSignature().getDeclaringTypeName(),
+                        joinPoint.getSignature().getName(), result);
+            }
             return result;
         } catch (IllegalArgumentException e) {
             log.error("Illegal argument: {} in {}.{}()", Arrays.toString(joinPoint.getArgs()),

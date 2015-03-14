@@ -2,14 +2,11 @@ package org.shm.monitoring.config.metrics;
 
 import org.springframework.boot.actuate.health.AbstractHealthIndicator;
 import org.springframework.boot.actuate.health.Health;
-import org.springframework.dao.DataAccessException;
-import org.springframework.jdbc.core.ConnectionCallback;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.util.StringUtils;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,7 +19,7 @@ public class DatabaseHealthIndicator extends AbstractHealthIndicator {
 
     private JdbcTemplate jdbcTemplate;
 
-    private static Map<String, String> queries = new HashMap<String, String>();
+    private static Map<String, String> queries = new HashMap<>();
 
     static {
         queries.put("HSQL Database Engine",
@@ -38,7 +35,6 @@ public class DatabaseHealthIndicator extends AbstractHealthIndicator {
 
     private String query = null;
 
-    
     public DatabaseHealthIndicator(DataSource dataSource) {
         this.dataSource = dataSource;
         this.jdbcTemplate = new JdbcTemplate(dataSource);
@@ -60,14 +56,7 @@ public class DatabaseHealthIndicator extends AbstractHealthIndicator {
     }
 
     private String getProduct() {
-        return this.jdbcTemplate.execute(new ConnectionCallback<String>() {
-            @Override
-            public String doInConnection(Connection connection) throws SQLException,
-                DataAccessException {
-
-                return connection.getMetaData().getDatabaseProductName();
-            }
-        });
+        return this.jdbcTemplate.execute((Connection connection) -> connection.getMetaData().getDatabaseProductName());
     }
 
     protected String detectQuery(String product) {

@@ -3,7 +3,7 @@
     "baseName": "monitoring",
     "packageName": "org.shm.monitoring",
     "packageFolder": "org/shm/monitoring",
-    "authenticationType": "cookie",
+    "authenticationType": "session",
     "hibernateCache": "ehcache",
     "clusteredHttpSession": "no",
     "websocket": "no",
@@ -13,6 +13,7 @@
     "useCompass": false,
     "buildTool": "maven",
     "frontendBuilder": "grunt",
-    "javaVersion": "7"
+    "javaVersion": "8",
+    "rememberMeKey": "607ea0055c6f70e80e67a577053200e7d8ccad41"
   }
 }

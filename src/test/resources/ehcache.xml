@@ -23,7 +23,7 @@
     <cache name="org.shm.monitoring.domain.User.authorities"
            timeToLiveSeconds="3600">
     </cache>
-   
+
     <cache name="org.shm.monitoring.domain.PersistentToken"
            timeToLiveSeconds="3600">
     </cache>

@@ -1,7 +1,5 @@
 package org.shm.monitoring.domain;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalDateTime;
 import javax.persistence.*;
@@ -13,24 +11,22 @@ import java.util.Map;
  * Persist AuditEvent managed by the Spring Boot actuator
  * @see org.springframework.boot.actuate.audit.AuditEvent
  */
-
 @Entity
 @Table(name = "T_PERSISTENT_AUDIT_EVENT")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class PersistentAuditEvent  {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "event_id")
-    private long id;
+    private Long id;
 
     @NotNull
+    @Column(nullable = false)
     private String principal;
 
     @Column(name = "event_date")
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
     private LocalDateTime auditEventDate;
-    
     @Column(name = "event_type")
     private String auditEventType;
 
@@ -40,11 +36,11 @@ public class PersistentAuditEvent  {
     @CollectionTable(name="T_PERSISTENT_AUDIT_EVENT_DATA", joinColumns=@JoinColumn(name="event_id"))
     private Map<String, String> data = new HashMap<>();
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

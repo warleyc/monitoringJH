@@ -6,7 +6,7 @@ security.basic.enabled: false
 endpoints.jolokia.enabled: false
 
 # security configuration (this key should be unique for your application, and kept secret)
-jhipster.security.rememberme.key: monitoring
+jhipster.security.rememberme.key: 607ea0055c6f70e80e67a577053200e7d8ccad41
 
 async:
     corePoolSize: 2
@@ -22,13 +22,12 @@ spring:
         protocol: smtp
         tls: false
         auth: false
+        from: monitoring@localhost
 
     messageSource:
         cacheSeconds: 1
 
-
 swagger:
-    apiDocsLocation: http://localhost:8080
     title: monitoring API
     description: monitoring applications and beyond!
     termsOfServiceUrl: http://jhipster.github.io/

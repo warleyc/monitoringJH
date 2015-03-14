@@ -14,7 +14,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
-
 /**
  * Persistent tokens are used by Spring Security to automatically log in users.
  *
@@ -26,7 +25,7 @@ import java.io.Serializable;
 public class PersistentToken implements Serializable {
 
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormat.forPattern("d MMMM yyyy");
-    
+
     private static final int MAX_USER_AGENT_LEN = 255;
 
     @Id
@@ -34,7 +33,7 @@ public class PersistentToken implements Serializable {
 
     @JsonIgnore
     @NotNull
-    @Column(name = "token_value")
+    @Column(name = "token_value", nullable = false)
     private String tokenValue;
 
     @JsonIgnore
@@ -44,7 +43,7 @@ public class PersistentToken implements Serializable {
 
     //an IPV6 address max length is 39 characters
     @Size(min = 0, max = 39)
-    @Column(name = "ip_address")
+    @Column(name = "ip_address", length = 39)
     private String ipAddress;
 
     @Column(name = "user_agent")
