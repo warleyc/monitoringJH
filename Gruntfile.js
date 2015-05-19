@@ -1,4 +1,4 @@
-// Generated on 2015-03-14 using generator-jhipster 2.6.0
+// Generated on 2015-05-19 using generator-jhipster 2.11.1
 'use strict';
 var fs = require('fs');
 
@@ -16,7 +16,13 @@ var parseVersionFromPomXml = function() {
 // usemin custom step
 var useminAutoprefixer = {
     name: 'autoprefixer',
-    createConfig: require('grunt-usemin/lib/config/cssmin').createConfig // Reuse cssmins createConfig
+    createConfig: function(context, block) {
+        if(block.src.length === 0) {
+            return {};
+        } else {
+            return require('grunt-usemin/lib/config/cssmin').createConfig(context, block) // Reuse cssmins createConfig
+        }
+    }
 };
 
 module.exports = function (grunt) {
@@ -86,9 +92,10 @@ module.exports = function (grunt) {
                     src : [
                         'src/main/webapp/**/*.html',
                         'src/main/webapp/**/*.json',
-                        '{.tmp/,}src/main/webapp/assets/styles/**/*.css',
-                        '{.tmp/,}src/main/webapp/scripts/**/*.js',
-                        'src/main/webapp/assets/images/**/*.{png,jpg,jpeg,gif,webp,svg}'
+                        'src/main/webapp/assets/styles/**/*.css',
+                        'src/main/webapp/scripts/**/*.js',
+                        'src/main/webapp/assets/images/**/*.{png,jpg,jpeg,gif,webp,svg}',
+                        'tmp/**/*.{css,js}'
                     ]
                 }
             },
@@ -294,14 +301,6 @@ module.exports = function (grunt) {
                     ]
                 }]
             },
-            generateHerokuDirectory: {
-                    expand: true,
-                    dest: 'deploy/heroku',
-                    src: [
-                        'pom.xml',
-                        'src/main/**'
-                ]
-            },
             generateOpenshiftDirectory: {
                     expand: true,
                     dest: 'deploy/openshift',
@@ -349,13 +348,6 @@ module.exports = function (grunt) {
                 connectCommits: false,
                 message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
             },
-            heroku: {
-                options: {
-                    dir: 'deploy/heroku',
-                    remote: 'heroku',
-                    branch: 'master'
-                }
-            },
             openshift: {
                 options: {
                     dir: 'deploy/openshift',
@@ -372,7 +364,7 @@ module.exports = function (grunt) {
             },
             dev: {
                 options: {
-                    dest: 'src/main/webapp/scripts/app/app.constants.js',
+                    dest: 'src/main/webapp/scripts/app/app.constants.js'
                 },
                 constants: {
                     ENV: 'dev',
@@ -381,7 +373,7 @@ module.exports = function (grunt) {
             },
             prod: {
                 options: {
-                    dest: '.tmp/scripts/app/app.constants.js',
+                    dest: '.tmp/scripts/app/app.constants.js'
                 },
                 constants: {
                     ENV: 'prod',
@@ -431,18 +423,22 @@ module.exports = function (grunt) {
         'htmlmin'
     ]);
 
-    grunt.registerTask('buildHeroku', [
-        'test',
-        'build',
-        'copy:generateHerokuDirectory',
-    ]);
+	grunt.registerTask('appendSkipBower', 'Force skip of bower for Gradle', function () {
 
-    grunt.registerTask('deployHeroku', [
-        'test',
-        'build',
-        'copy:generateHerokuDirectory',
-        'buildcontrol:heroku'
-    ]);
+		if (!grunt.file.exists(filepath)) {
+			// Assume this is a maven project
+			return true;
+		}
+
+		var fileContent = grunt.file.read(filepath);
+		var skipBowerIndex = fileContent.indexOf("skipBower=true");
+
+		if (skipBowerIndex != -1) {
+			return true;
+		}
+
+		grunt.file.write(filepath, fileContent + "\nskipBower=true\n");
+	});
 
     grunt.registerTask('buildOpenshift', [
         'test',

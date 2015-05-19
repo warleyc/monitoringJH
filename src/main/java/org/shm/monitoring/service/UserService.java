@@ -6,6 +6,7 @@ import org.shm.monitoring.domain.User;
 import org.shm.monitoring.repository.AuthorityRepository;
 import org.shm.monitoring.repository.PersistentTokenRepository;
 import org.shm.monitoring.repository.UserRepository;
+import org.shm.monitoring.repository.search.UserSearchRepository;
 import org.shm.monitoring.security.SecurityUtils;
 import org.shm.monitoring.service.util.RandomUtil;
 import org.joda.time.DateTime;
@@ -39,6 +40,9 @@ public class UserService {
     private UserRepository userRepository;
 
     @Inject
+    private UserSearchRepository userSearchRepository;
+
+    @Inject
     private PersistentTokenRepository persistentTokenRepository;
 
     @Inject
@@ -52,14 +56,44 @@ public class UserService {
                 user.setActivated(true);
                 user.setActivationKey(null);
                 userRepository.save(user);
+                userSearchRepository.save(user);
                 log.debug("Activated user: {}", user);
                 return user;
             });
         return Optional.empty();
     }
 
+    public Optional<User> completePasswordReset(String newPassword, String key) {
+       log.debug("Reset user password for reset key {}", key);
+
+       return userRepository.findOneByResetKey(key)
+           .filter(user -> {
+               DateTime oneDayAgo = DateTime.now().minusHours(24);
+               return user.getResetDate().isAfter(oneDayAgo.toInstant().getMillis());
+           })
+           .map(user -> {
+               user.setActivated(true);
+               user.setPassword(passwordEncoder.encode(newPassword));
+               user.setResetKey(null);
+               user.setResetDate(null);
+               userRepository.save(user);
+               return user;
+           });
+    }
+
+    public Optional<User> requestPasswordReset(String mail) {
+       return userRepository.findOneByEmail(mail)
+           .map(user -> {
+               user.setResetKey(RandomUtil.generateResetKey());
+               user.setResetDate(DateTime.now());
+               userRepository.save(user);
+               return user;
+           });
+    }
+
     public User createUserInformation(String login, String password, String firstName, String lastName, String email,
                                       String langKey) {
+
         User newUser = new User();
         Authority authority = authorityRepository.findOne("ROLE_USER");
         Set<Authority> authorities = new HashSet<>();
@@ -78,16 +112,19 @@ public class UserService {
         authorities.add(authority);
         newUser.setAuthorities(authorities);
         userRepository.save(newUser);
+        userSearchRepository.save(newUser);
         log.debug("Created Information for User: {}", newUser);
         return newUser;
     }
 
-    public void updateUserInformation(String firstName, String lastName, String email) {
+    public void updateUserInformation(String firstName, String lastName, String email, String langKey) {
         userRepository.findOneByLogin(SecurityUtils.getCurrentLogin()).ifPresent(u -> {
             u.setFirstName(firstName);
             u.setLastName(lastName);
             u.setEmail(email);
+            u.setLangKey(langKey);
             userRepository.save(u);
+            userSearchRepository.save(u);
             log.debug("Changed Information for User: {}", u);
         });
     }
@@ -141,6 +178,7 @@ public class UserService {
         for (User user : users) {
             log.debug("Deleting not activated user {}", user.getLogin());
             userRepository.delete(user);
+            userSearchRepository.delete(user);
         }
     }
 }

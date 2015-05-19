@@ -5,7 +5,9 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.Email;
 
+import org.springframework.data.elasticsearch.annotations.Document;
 import javax.persistence.*;
+import org.hibernate.annotations.Type;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -13,12 +15,15 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.joda.time.DateTime;
+
 /**
  * A user.
  */
 @Entity
-@Table(name = "T_USER")
+@Table(name = "JHI_USER")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@Document(indexName="user")
 public class User extends AbstractAuditingEntity implements Serializable {
 
     @Id
@@ -59,12 +64,21 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     @Size(max = 20)
     @Column(name = "activation_key", length = 20)
+    @JsonIgnore
     private String activationKey;
+
+    @Size(max = 20)
+    @Column(name = "reset_key", length = 20)
+    private String resetKey;
+
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    @Column(name = "reset_date", nullable = true)
+    private DateTime resetDate = null;
 
     @JsonIgnore
     @ManyToMany
     @JoinTable(
-            name = "T_USER_AUTHORITY",
+            name = "JHI_USER_AUTHORITY",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "name")})
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -137,6 +151,22 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     public void setActivationKey(String activationKey) {
         this.activationKey = activationKey;
+    }
+
+    public String getResetKey() {
+        return resetKey;
+    }
+
+    public void setResetKey(String resetKey) {
+        this.resetKey = resetKey;
+    }
+
+    public DateTime getResetDate() {
+       return resetDate;
+    }
+
+    public void setResetDate(DateTime resetDate) {
+       this.resetDate = resetDate;
     }
 
     public String getLangKey() {

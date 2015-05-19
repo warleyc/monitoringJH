@@ -16,9 +16,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
+import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.util.StringUtils;
 
 import javax.sql.DataSource;
 import java.util.Arrays;
@@ -27,6 +29,7 @@ import java.util.Arrays;
 @EnableJpaRepositories("org.shm.monitoring.repository")
 @EnableJpaAuditing(auditorAwareRef = "springSecurityAuditorAware")
 @EnableTransactionManagement
+@EnableElasticsearchRepositories("org.shm.monitoring.repository.search")
 public class DatabaseConfiguration implements EnvironmentAware {
 
     private final Logger log = LoggerFactory.getLogger(DatabaseConfiguration.class);
@@ -51,14 +54,14 @@ public class DatabaseConfiguration implements EnvironmentAware {
         log.debug("Configuring Datasource");
         if (propertyResolver.getProperty("url") == null && propertyResolver.getProperty("databaseName") == null) {
             log.error("Your database connection pool configuration is incorrect! The application" +
-                    "cannot start. Please check your Spring profile, current profiles are: {}",
+                    " cannot start. Please check your Spring profile, current profiles are: {}",
                     Arrays.toString(env.getActiveProfiles()));
 
             throw new ApplicationContextException("Database connection pool is not configured correctly");
         }
         HikariConfig config = new HikariConfig();
         config.setDataSourceClassName(propertyResolver.getProperty("dataSourceClassName"));
-        if (propertyResolver.getProperty("url") == null || "".equals(propertyResolver.getProperty("url"))) {
+        if(StringUtils.isEmpty(propertyResolver.getProperty("url"))) {
             config.addDataSourceProperty("databaseName", propertyResolver.getProperty("databaseName"));
             config.addDataSourceProperty("serverName", propertyResolver.getProperty("serverName"));
         } else {
@@ -67,13 +70,6 @@ public class DatabaseConfiguration implements EnvironmentAware {
         config.addDataSourceProperty("user", propertyResolver.getProperty("username"));
         config.addDataSourceProperty("password", propertyResolver.getProperty("password"));
 
-        //MySQL optimizations, see https://github.com/brettwooldridge/HikariCP/wiki/MySQL-Configuration
-        if ("com.mysql.jdbc.jdbc2.optional.MysqlDataSource".equals(propertyResolver.getProperty("dataSourceClassName"))) {
-            config.addDataSourceProperty("cachePrepStmts", propertyResolver.getProperty("cachePrepStmts", "true"));
-            config.addDataSourceProperty("prepStmtCacheSize", propertyResolver.getProperty("prepStmtCacheSize", "250"));
-            config.addDataSourceProperty("prepStmtCacheSqlLimit", propertyResolver.getProperty("prepStmtCacheSqlLimit", "2048"));
-            config.addDataSourceProperty("useServerPrepStmts", propertyResolver.getProperty("useServerPrepStmts", "true"));
-        }
         if (metricRegistry != null) {
             config.setMetricRegistry(metricRegistry);
         }

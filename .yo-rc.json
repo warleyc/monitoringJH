@@ -9,11 +9,12 @@
     "websocket": "no",
     "databaseType": "sql",
     "devDatabaseType": "h2Memory",
-    "prodDatabaseType": "mysql",
+    "prodDatabaseType": "postgresql",
     "useCompass": false,
     "buildTool": "maven",
     "frontendBuilder": "grunt",
     "javaVersion": "8",
-    "rememberMeKey": "607ea0055c6f70e80e67a577053200e7d8ccad41"
+    "rememberMeKey": "95c328548770b43f9d99d9ea4e73811b6b5a35c9",
+    "searchEngine": "elasticsearch"
   }
 }

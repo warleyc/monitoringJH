@@ -1,8 +1,5 @@
 <!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html class="no-js">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +17,7 @@
         <!-- endbuild -->
     </head>
     <body ng-app="monitoringApp">
-        <!--[if lt IE 10]>
+        <!--[if lt IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <div ng-show="{{ENV === 'dev'}}" class="development" ng-cloak=""></div>
@@ -70,11 +67,14 @@
         <script src="scripts/app/app.constants.js"></script>
         <script src="scripts/components/auth/auth.service.js"></script>
         <script src="scripts/components/auth/principal.service.js"></script>
+        <script src="scripts/components/auth/authority.directive.js"></script>
         <script src="scripts/components/auth/services/account.service.js"></script>
         <script src="scripts/components/auth/services/activate.service.js"></script>
         <script src="scripts/components/auth/services/password.service.js"></script>
         <script src="scripts/components/auth/services/register.service.js"></script>
         <script src="scripts/components/form/form.directive.js"></script>
+        <script src="scripts/components/form/pager.directive.js"></script>
+        <script src="scripts/components/form/pagination.directive.js"></script>
         <script src="scripts/components/language/language.service.js"></script>
         <script src="scripts/components/language/language.controller.js"></script>
         <script src="scripts/components/admin/audits.service.js"></script>
@@ -101,6 +101,10 @@
         <script src="scripts/app/account/register/register.controller.js"></script>
         <script src="scripts/app/account/settings/settings.js"></script>
         <script src="scripts/app/account/settings/settings.controller.js"></script>
+        <script src="scripts/app/account/reset/finish/reset.finish.controller.js"></script>
+        <script src="scripts/app/account/reset/finish/reset.finish.js"></script>
+        <script src="scripts/app/account/reset/request/reset.request.controller.js"></script>
+        <script src="scripts/app/account/reset/request/reset.request.js"></script>
         <script src="scripts/app/admin/admin.js"></script>
         <script src="scripts/app/admin/audits/audits.js"></script>
         <script src="scripts/app/admin/audits/audits.controller.js"></script>
@@ -121,10 +125,6 @@
         <script src="scripts/components/auth/provider/auth.session.service.js"></script>
         <script src="scripts/app/account/sessions/sessions.js"></script>
         <script src="scripts/app/account/sessions/sessions.controller.js"></script>
-        <script src="scripts/app/entities/result/result.js"></script>
-        <script src="scripts/app/entities/result/result.controller.js"></script>
-        <script src="scripts/app/entities/result/result-detail.controller.js"></script>
-        <script src="scripts/components/entities/result/result.service.js"></script>
         <!-- endbuild -->
 </body>
 </html>

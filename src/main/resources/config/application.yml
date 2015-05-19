@@ -6,26 +6,23 @@ security.basic.enabled: false
 endpoints.jolokia.enabled: false
 
 # security configuration (this key should be unique for your application, and kept secret)
-jhipster.security.rememberme.key: 607ea0055c6f70e80e67a577053200e7d8ccad41
+jhipster.security.rememberme.key: 95c328548770b43f9d99d9ea4e73811b6b5a35c9
 
 async:
     corePoolSize: 2
     maxPoolSize: 50
     queueCapacity: 10000
 
-spring:
-    mail:
-        host: localhost
-        port: 25
-        user:
-        password:
-        protocol: smtp
-        tls: false
-        auth: false
-        from: monitoring@localhost
+mail:
+    host: localhost
+    port: 25
+    username:
+    password:
+    protocol: smtp
+    tls: false
+    auth: false
+    from: monitoring@localhost
 
-    messageSource:
-        cacheSeconds: 1
 
 swagger:
     title: monitoring API
