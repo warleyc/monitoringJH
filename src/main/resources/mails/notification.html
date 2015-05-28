@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Notification</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div>
+Configuration name : ${configuration.name} <br/>
+Http Code : ${httpResponse.code} <br/>
+Duration :${httpResponse.time}<br/>
+Response Message :${httpResponse.responseMessage}<br/>
+Header: ${httpResponse.header}<br/>
+cookies: ${httpResponse.cookies}<br/>
+
+
+result: ${httpResponse.result}<br/>
+stackTrace: ${httpResponse.stackTrace}<br/>
+
+</div>
+</body>
+</html>
+
+
+
+
+

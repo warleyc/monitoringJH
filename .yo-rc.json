@@ -10,11 +10,11 @@
     "databaseType": "sql",
     "devDatabaseType": "h2Memory",
     "prodDatabaseType": "postgresql",
+    "searchEngine": "no",
     "useCompass": false,
     "buildTool": "maven",
     "frontendBuilder": "grunt",
     "javaVersion": "8",
-    "rememberMeKey": "95c328548770b43f9d99d9ea4e73811b6b5a35c9",
-    "searchEngine": "elasticsearch"
+    "rememberMeKey": "95c328548770b43f9d99d9ea4e73811b6b5a35c9"
   }
 }

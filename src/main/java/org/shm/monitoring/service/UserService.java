@@ -6,7 +6,6 @@ import org.shm.monitoring.domain.User;
 import org.shm.monitoring.repository.AuthorityRepository;
 import org.shm.monitoring.repository.PersistentTokenRepository;
 import org.shm.monitoring.repository.UserRepository;
-import org.shm.monitoring.repository.search.UserSearchRepository;
 import org.shm.monitoring.security.SecurityUtils;
 import org.shm.monitoring.service.util.RandomUtil;
 import org.joda.time.DateTime;
@@ -40,9 +39,6 @@ public class UserService {
     private UserRepository userRepository;
 
     @Inject
-    private UserSearchRepository userSearchRepository;
-
-    @Inject
     private PersistentTokenRepository persistentTokenRepository;
 
     @Inject
@@ -56,7 +52,6 @@ public class UserService {
                 user.setActivated(true);
                 user.setActivationKey(null);
                 userRepository.save(user);
-                userSearchRepository.save(user);
                 log.debug("Activated user: {}", user);
                 return user;
             });
@@ -112,7 +107,6 @@ public class UserService {
         authorities.add(authority);
         newUser.setAuthorities(authorities);
         userRepository.save(newUser);
-        userSearchRepository.save(newUser);
         log.debug("Created Information for User: {}", newUser);
         return newUser;
     }
@@ -124,7 +118,6 @@ public class UserService {
             u.setEmail(email);
             u.setLangKey(langKey);
             userRepository.save(u);
-            userSearchRepository.save(u);
             log.debug("Changed Information for User: {}", u);
         });
     }
@@ -178,7 +171,6 @@ public class UserService {
         for (User user : users) {
             log.debug("Deleting not activated user {}", user.getLogin());
             userRepository.delete(user);
-            userSearchRepository.delete(user);
         }
     }
 }

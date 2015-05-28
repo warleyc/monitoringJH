@@ -1,0 +1,91 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "type",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Type",
+            "fieldNameUnderscored": "type",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "message",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Message",
+            "fieldNameUnderscored": "message",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "response",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Response",
+            "fieldNameUnderscored": "response",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "code",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "Code",
+            "fieldNameUnderscored": "code",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "duration",
+            "fieldType": "Long",
+            "fieldNameCapitalized": "Duration",
+            "fieldNameUnderscored": "duration",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "configurationName",
+            "fieldType": "String",
+            "fieldNameCapitalized": "ConfigurationName",
+            "fieldNameUnderscored": "configuration_name",
+            "fieldInJavaBeanMethod": "ConfigurationName",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 7,
+            "fieldName": "configurationId",
+            "fieldType": "Long",
+            "fieldNameCapitalized": "ConfigurationId",
+            "fieldNameUnderscored": "configuration_id",
+            "fieldInJavaBeanMethod": "ConfigurationId",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 8,
+            "fieldName": "emailSent",
+            "fieldType": "Boolean",
+            "fieldNameCapitalized": "EmailSent",
+            "fieldNameUnderscored": "email_sent",
+            "fieldInJavaBeanMethod": "EmailSent",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 9,
+            "fieldName": "date",
+            "fieldType": "DateTime",
+            "fieldNameCapitalized": "Date",
+            "fieldNameUnderscored": "date",
+            "fieldInJavaBeanMethod": "Date",
+            "fieldValidate": false
+        }
+    ],
+    "fieldsContainOwnerManyToMany": false,
+    "fieldsContainOneToMany": false,
+    "fieldsContainLocalDate": false,
+    "fieldsContainCustomTime": true,
+    "fieldsContainBigDecimal": false,
+    "fieldsContainDateTime": true,
+    "fieldsContainDate": false,
+    "changelogDate": "20150314222833",
+    "pagination": "pagination",
+    "validation": false
+}

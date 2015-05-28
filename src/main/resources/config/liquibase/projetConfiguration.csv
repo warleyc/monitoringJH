@@ -1,0 +1,2 @@
+id;name;url;post;parametre;request_method;header;frequence;login;password2;check_message;actif;alert_sms;alert_mail;email;content_type;soap
+1;crawley;http://www.crawley.fr;;;GET;;0;;;name="monitoring";true;true;true;contact@crawley.fr;;false
