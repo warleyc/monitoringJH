@@ -1,0 +1,94 @@
+
+<div>
+    <h2><span translate="monitoringApp.response.detail.title">Response</span> {{response.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="entity.detail.field">Field</th>
+                    <th translate="entity.detail.value">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span translate="monitoringApp.response.type">Type</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{response.type}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="monitoringApp.response.message">Message</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{response.message}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="monitoringApp.response.response">Response</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{response.response}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="monitoringApp.response.code">Code</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{response.code}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="monitoringApp.response.duration">Duration</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{response.duration}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="monitoringApp.response.configurationName">ConfigurationName</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{response.configurationName}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="monitoringApp.response.configurationId">ConfigurationId</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{response.configurationId}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="monitoringApp.response.emailSent">EmailSent</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{response.emailSent}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="monitoringApp.response.date">Date</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{response.date}}" readonly>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            ui-sref="response"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

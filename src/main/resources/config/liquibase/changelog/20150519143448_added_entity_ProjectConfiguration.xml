@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <!--
+        Added the entity ProjectConfiguration.
+    -->
+    <changeSet id="20150519143448" author="jhipster">
+        <createTable tableName="PROJECTCONFIGURATION">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="url" type="varchar(255)"/>
+            <column name="post" type="varchar(255)"/>
+            <column name="parametre" type="varchar(255)"/>
+            <column name="request_method" type="varchar(255)"/>
+            <column name="header" type="varchar(255)"/>
+            <column name="frequence" type="integer"/>
+            <column name="login" type="varchar(255)"/>
+            <column name="password2" type="varchar(255)"/>
+            <column name="check_message" type="varchar(255)"/>
+            <column name="last_error" type="timestamp"/>
+            <column name="last_succes" type="timestamp"/>
+            <column name="actif" type="bit"/>
+            <column name="alert_sms" type="bit"/>
+            <column name="alert_mail" type="bit"/>
+            <column name="email" type="varchar(255)"/>
+            <column name="content_type" type="varchar(255)"/>
+            <column name="soap" type="bit"/>
+        </createTable>
+        <dropDefaultValue tableName="PROJECTCONFIGURATION" columnName="last_error" columnDataType="datetime"/>
+
+        <dropDefaultValue tableName="PROJECTCONFIGURATION" columnName="last_succes" columnDataType="datetime"/>
+
+        
+    </changeSet>
+</databaseChangeLog>

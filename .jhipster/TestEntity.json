@@ -1,0 +1,87 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "test1",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Test1",
+            "fieldNameUnderscored": "test1",
+            "fieldInJavaBeanMethod": "Test1",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength",
+                "pattern"
+            ],
+            "fieldValidateRulesMinlength": "5",
+            "fieldValidateRulesMaxlength": "45",
+            "fieldValidateRulesPattern": "^[a-zA-Z0-9]*$"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "test2",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "Test2",
+            "fieldNameUnderscored": "test2",
+            "fieldInJavaBeanMethod": "Test2",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "test3",
+            "fieldType": "Long",
+            "fieldNameCapitalized": "Test3",
+            "fieldNameUnderscored": "test3",
+            "fieldInJavaBeanMethod": "Test3",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "test4",
+            "fieldType": "BigDecimal",
+            "fieldNameCapitalized": "Test4",
+            "fieldNameUnderscored": "test4",
+            "fieldInJavaBeanMethod": "Test4",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "test5",
+            "fieldType": "LocalDate",
+            "fieldNameCapitalized": "Test5",
+            "fieldNameUnderscored": "test5",
+            "fieldInJavaBeanMethod": "Test5",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "test6",
+            "fieldType": "DateTime",
+            "fieldNameCapitalized": "Test6",
+            "fieldNameUnderscored": "test6",
+            "fieldInJavaBeanMethod": "Test6",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 7,
+            "fieldName": "test7",
+            "fieldType": "Boolean",
+            "fieldNameCapitalized": "Test7",
+            "fieldNameUnderscored": "test7",
+            "fieldInJavaBeanMethod": "Test7",
+            "fieldValidate": false
+        }
+    ],
+    "fieldsContainOwnerManyToMany": false,
+    "fieldsContainOneToMany": false,
+    "fieldsContainLocalDate": true,
+    "fieldsContainCustomTime": true,
+    "fieldsContainBigDecimal": true,
+    "fieldsContainDateTime": true,
+    "fieldsContainDate": false,
+    "changelogDate": "20150513151412",
+    "pagination": "infinite-scroll",
+    "validation": true
+}

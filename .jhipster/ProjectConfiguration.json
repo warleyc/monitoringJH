@@ -1,0 +1,177 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Name",
+            "fieldNameUnderscored": "name",
+            "fieldInJavaBeanMethod": "Name",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "url",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Url",
+            "fieldNameUnderscored": "url",
+            "fieldInJavaBeanMethod": "Url",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "post",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Post",
+            "fieldNameUnderscored": "post",
+            "fieldInJavaBeanMethod": "Post",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "parametre",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Parametre",
+            "fieldNameUnderscored": "parametre",
+            "fieldInJavaBeanMethod": "Parametre",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "requestMethod",
+            "fieldType": "String",
+            "fieldNameCapitalized": "RequestMethod",
+            "fieldNameUnderscored": "request_method",
+            "fieldInJavaBeanMethod": "RequestMethod",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "header",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Header",
+            "fieldNameUnderscored": "header",
+            "fieldInJavaBeanMethod": "Header",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 7,
+            "fieldName": "frequence",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "Frequence",
+            "fieldNameUnderscored": "frequence",
+            "fieldInJavaBeanMethod": "Frequence",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 8,
+            "fieldName": "login",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Login",
+            "fieldNameUnderscored": "login",
+            "fieldInJavaBeanMethod": "Login",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 9,
+            "fieldName": "password2",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Password2",
+            "fieldNameUnderscored": "password2",
+            "fieldInJavaBeanMethod": "Password2",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 10,
+            "fieldName": "checkMessage",
+            "fieldType": "String",
+            "fieldNameCapitalized": "CheckMessage",
+            "fieldNameUnderscored": "check_message",
+            "fieldInJavaBeanMethod": "CheckMessage",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 11,
+            "fieldName": "lastError",
+            "fieldType": "DateTime",
+            "fieldNameCapitalized": "LastError",
+            "fieldNameUnderscored": "last_error",
+            "fieldInJavaBeanMethod": "LastError",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 12,
+            "fieldName": "lastSucces",
+            "fieldType": "DateTime",
+            "fieldNameCapitalized": "LastSucces",
+            "fieldNameUnderscored": "last_succes",
+            "fieldInJavaBeanMethod": "LastSucces",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 13,
+            "fieldName": "actif",
+            "fieldType": "Boolean",
+            "fieldNameCapitalized": "Actif",
+            "fieldNameUnderscored": "actif",
+            "fieldInJavaBeanMethod": "Actif",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 14,
+            "fieldName": "alertSMS",
+            "fieldType": "Boolean",
+            "fieldNameCapitalized": "AlertSMS",
+            "fieldNameUnderscored": "alert_sms",
+            "fieldInJavaBeanMethod": "AlertSMS",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 15,
+            "fieldName": "alertMail",
+            "fieldType": "Boolean",
+            "fieldNameCapitalized": "AlertMail",
+            "fieldNameUnderscored": "alert_mail",
+            "fieldInJavaBeanMethod": "AlertMail",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 16,
+            "fieldName": "email",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Email",
+            "fieldNameUnderscored": "email",
+            "fieldInJavaBeanMethod": "Email",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 17,
+            "fieldName": "contentType",
+            "fieldType": "String",
+            "fieldNameCapitalized": "ContentType",
+            "fieldNameUnderscored": "content_type",
+            "fieldInJavaBeanMethod": "ContentType",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 18,
+            "fieldName": "soap",
+            "fieldType": "Boolean",
+            "fieldNameCapitalized": "Soap",
+            "fieldNameUnderscored": "soap",
+            "fieldInJavaBeanMethod": "Soap",
+            "fieldValidate": false
+        }
+    ],
+    "fieldsContainOwnerManyToMany": false,
+    "fieldsContainOneToMany": false,
+    "fieldsContainLocalDate": false,
+    "fieldsContainCustomTime": true,
+    "fieldsContainBigDecimal": false,
+    "fieldsContainDateTime": true,
+    "fieldsContainDate": false,
+    "changelogDate": "20150519143448",
+    "pagination": "infinite-scroll",
+    "validation": false
+}

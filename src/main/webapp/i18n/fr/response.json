@@ -1,0 +1,27 @@
+{
+    "monitoringApp": {
+        "response" : {
+            "home": {
+                "title": "Responses",
+                "createLabel": "Créer un nouveau Response",
+                "createOrEditLabel": "Créer ou éditer un Response"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Response {{ id }} ?"
+            },
+            "detail": {
+                "title": "Response"
+            },
+            "type": "Type",
+            "message": "Message",
+            "response": "Response",
+            "code": "Code",
+            "duration": "Duration",
+            "configurationName": "ConfigurationName",
+            "configurationId": "ConfigurationId",
+            "emailSent": "EmailSent",
+            "date": "Date"
+        }
+    }
+}
+

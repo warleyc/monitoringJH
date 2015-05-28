@@ -1,0 +1,36 @@
+{
+    "monitoringApp": {
+        "projectConfiguration" : {
+            "home": {
+                "title": "ProjectConfigurations",
+                "createLabel": "Créer un nouveau ProjectConfiguration",
+                "createOrEditLabel": "Créer ou éditer un ProjectConfiguration"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le ProjectConfiguration {{ id }} ?"
+            },
+            "detail": {
+                "title": "ProjectConfiguration"
+            },
+            "name": "Name",
+            "url": "Url",
+            "post": "Post",
+            "parametre": "Parametre",
+            "requestMethod": "RequestMethod",
+            "header": "Header",
+            "frequence": "Frequence",
+            "login": "Login",
+            "password2": "Password2",
+            "checkMessage": "CheckMessage",
+            "lastError": "LastError",
+            "lastSucces": "LastSucces",
+            "actif": "Actif",
+            "alertSMS": "AlertSMS",
+            "alertMail": "AlertMail",
+            "email": "Email",
+            "contentType": "ContentType",
+            "soap": "Soap"
+        }
+    }
+}
+
