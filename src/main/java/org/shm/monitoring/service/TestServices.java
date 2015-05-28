@@ -5,7 +5,6 @@ import org.shm.monitoring.domain.ProjectConfiguration;
 import org.shm.monitoring.domain.Response;
 import org.shm.monitoring.repository.ProjectConfigurationRepository;
 import org.shm.monitoring.repository.ResponseRepository;
-import org.shm.monitoring.service.notification.SendNotification;
 import org.shm.monitoring.web.dto.HttpResponse;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -14,15 +13,10 @@ import javax.inject.Inject;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @Service
 public class TestServices /*implements Callable<String>*/ {

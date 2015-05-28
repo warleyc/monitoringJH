@@ -3,13 +3,11 @@ package org.shm.monitoring.service;
 import org.joda.time.DateTime;
 import org.shm.monitoring.domain.Response;
 import org.shm.monitoring.repository.ResponseRepository;
-import org.shm.monitoring.service.notification.SendNotification;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.env.Environment;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 
@@ -118,7 +116,7 @@ public class CronService {
         //return
             //responseRepository.deleteByTypeAndDateBefore(type, date);
         responseRepository.deleteByType(type);
-return 0;
+        return 0;
     }
 
 }

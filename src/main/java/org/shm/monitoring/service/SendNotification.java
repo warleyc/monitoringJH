@@ -1,4 +1,4 @@
-package org.shm.monitoring.service.notification;
+package org.shm.monitoring.service;
 
 
 import org.shm.monitoring.domain.ProjectConfiguration;
@@ -6,7 +6,6 @@ import org.shm.monitoring.web.dto.HttpResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.velocity.VelocityEngineUtils;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
@@ -24,6 +23,8 @@ public class SendNotification {
     private static final Logger log = LoggerFactory.getLogger(SendNotification.class);
 
 
+    @Inject
+    private MailService mailService;
 
     @Inject
     TemplateEngine templateEngine;
@@ -67,7 +68,7 @@ public class SendNotification {
 
     private void sendMessage(String email,String subject, String htmlBody) throws MessagingException,
         UnsupportedEncodingException  {
-
+/*
         Message msg = getMessage(email);
 
         Multipart mp = new MimeMultipart();
@@ -80,18 +81,23 @@ public class SendNotification {
 
         // msg.setText(msgBody);
         Transport.send(msg);
+*/
+
+        mailService.sendEmail(email,subject,htmlBody,false,true);
     }
 
     public void sendNotification(String subject)  {
 
 
         try {
-            Message msg = getMessage(null);
+            //Message msg = getMessage(null);
             Date date = Calendar.getInstance().getTime();
             SimpleDateFormat sdf = new SimpleDateFormat("E MM/dd/yyyy HH:mm:ss.SSS");
-            msg.setSubject(subject + sdf.format(date));
+            /*msg.setSubject(subject + sdf.format(date));
             msg.setText("test");
             Transport.send(msg);
+            */
+            mailService.sendEmail("nicolas.crawley@gmail.com", subject+ sdf.format(date),"test",false,false);
 
         } catch (Exception e) {
             log.warn("E-mail could not be sent to user '{}', exception is: {}", subject, e.getMessage());
