@@ -1,14 +1,14 @@
 'use strict';
 
 angular.module('monitoringApp')
-    .factory('Response', function ($resource) {
+    .factory('Response', function ($resource, DateUtils) {
         return $resource('api/responses/:id', {}, {
             'query': { method: 'GET', isArray: true},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
                     data = angular.fromJson(data);
-                    if (data.date != null) data.date = new Date(data.date);
+                    data.date = DateUtils.convertDateTimeFromServer(data.date);
                     return data;
                 }
             },

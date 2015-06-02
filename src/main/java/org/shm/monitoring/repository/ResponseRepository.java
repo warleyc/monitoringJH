@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.*;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,12 +15,16 @@ import java.util.List;
 @Transactional
 public interface ResponseRepository extends JpaRepository<Response,Long> {
 
-    public void deleteByTypeAndDateBefore(String type,DateTime date);
+
 
 
     Long countByType(String type);
 
     Long deleteByType(String type);
+
+    Long deleteByDateBefore(DateTime date);
+
+    Long deleteByTypeAndDateBefore(String type,DateTime date);
 
     List<Response> removeByType(String type);
 

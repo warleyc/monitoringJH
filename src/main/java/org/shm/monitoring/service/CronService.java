@@ -1,5 +1,6 @@
 package org.shm.monitoring.service;
 
+import com.codahale.metrics.annotation.Timed;
 import org.joda.time.DateTime;
 import org.shm.monitoring.domain.Response;
 import org.shm.monitoring.repository.ResponseRepository;
@@ -29,15 +30,12 @@ public class CronService {
     private TestServices testServices;
 
 
-
     @Inject
     private StatistiqueServices statistiqueServices;
 
 
-
-
-
     @Scheduled(cron = "0 */5 * * * *")
+    @Timed
     public void monitoring() {
         log.info("monitoring every 5 minutes");
 /*
@@ -66,30 +64,29 @@ public class CronService {
 
 
     }
-    @Scheduled(cron = "0 */2 * * * *")
-   // @Scheduled(cron = "* * 5 * * *")
+
+    //@Scheduled(cron = "0 */2 * * * *")
+    @Scheduled(cron = "0 0 5 * * *")
     public void purgeInfo() {
         log.info("purge INFO 20 days ");
-        purge("INFO", 20);
+        purgeAndSendNotification("INFO", 20);
     }
 
-    //@Scheduled(cron = "* * 6 * * *")
-    @Scheduled(cron = "0 */5 * * * *")
+    @Scheduled(cron = "0 0 6 * * *")
+    //@Scheduled(cron = "0 */5 * * * *")
     public void purgeError() {
         log.info("Purge des logs de type erreur au bout d'un ans!");
-        purge("ERROR", 365);
+        purgeAndSendNotification("ERROR", 365);
     }
 
 
-    public String purge(String type,
-                        int duree) {
+    public void purgeAndSendNotification(String type, int duree) {
 
         log.info("Purge");
         long start = System.currentTimeMillis();
 
         try {
-
-            int nb = purget(type, duree);
+            Long nb = purget(type, duree);
             long end = System.currentTimeMillis();
             long time = end - start;
             sendNotification.sendNotification("Purge de :" + nb + " logs en "
@@ -100,23 +97,16 @@ public class CronService {
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
-        return "redirect:/welcome.do";
     }
 
-    public int purget() {
+    public Long purget() {
         return purget("INFO", 6);
     }
 
-    public int purget(String type, int duree) {
-
-        String find = "delete From " + Response.class.getName()
-            + " t where type= :type and  date < :date ";
+    public Long purget(String type, int duree) {
         DateTime date = DateTime.now();
         date.minusDays(duree);
-        //return
-            //responseRepository.deleteByTypeAndDateBefore(type, date);
-        responseRepository.deleteByType(type);
-        return 0;
+        return responseRepository.deleteByTypeAndDateBefore(type, date);
     }
 
 }
