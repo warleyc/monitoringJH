@@ -17,7 +17,7 @@
             </column>
             <column name="type" type="varchar(255)"/>
             <column name="message" type="varchar(255)"/>
-            <column name="response" type="varchar(255)"/>
+            <column name="response" type="varchar(5000)"/>
             <column name="code" type="integer"/>
             <column name="duration" type="bigint"/>
             <column name="configuration_name" type="varchar(255)"/>
@@ -27,6 +27,6 @@
         </createTable>
         <dropDefaultValue tableName="RESPONSE" columnName="date" columnDataType="datetime"/>
 
-        
+
     </changeSet>
 </databaseChangeLog>
