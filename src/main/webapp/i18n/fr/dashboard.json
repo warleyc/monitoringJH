@@ -1,0 +1,18 @@
+{
+    "monitoringApp": {
+        "dashboard" : {
+            "home": {
+                "title": "Dashboards",
+                "createLabel": "Créer un nouveau Dashboard",
+                "createOrEditLabel": "Créer ou éditer un Dashboard"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Dashboard {{ id }} ?"
+            },
+            "detail": {
+                "title": "Dashboard"
+            }
+        }
+    }
+}
+

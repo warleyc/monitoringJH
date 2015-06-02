@@ -8,6 +8,7 @@
                 "main": "Entités",
                 "projectConfiguration": "ProjectConfiguration",
                 "response": "Response",
+                "dashboard": "Dashboard",
                 "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
