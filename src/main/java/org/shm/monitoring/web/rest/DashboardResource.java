@@ -1,8 +1,10 @@
 package org.shm.monitoring.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+
 import org.shm.monitoring.domain.ProjectConfiguration;
 import org.shm.monitoring.domain.Response;
+
 import org.shm.monitoring.repository.ProjectConfigurationRepository;
 import org.shm.monitoring.repository.ResponseRepository;
 import org.shm.monitoring.web.rest.dto.DashboardDTO;
@@ -23,13 +25,14 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * REST controller for managing Response.
+ * REST controller for managing Dashboard.
  */
 @RestController
 @RequestMapping("/api")
 public class DashboardResource {
 
     private final Logger log = LoggerFactory.getLogger(DashboardResource.class);
+
 
     @Inject
     private ResponseRepository responseRepository;
@@ -38,15 +41,16 @@ public class DashboardResource {
     private ProjectConfigurationRepository projectConfigurationRepository;
 
 
+
     /**
      * GET  /dashboard -> get 10 last the responses and projectConfiguration.
      */
     @RequestMapping(value = "/dashboard",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<DashboardDTO> getAll(@RequestParam(value = "page" , required = false) Integer offset,
-                                  @RequestParam(value = "per_page", required = false) Integer limit)
+                                               @RequestParam(value = "per_page", required = false) Integer limit)
         throws URISyntaxException {
         DashboardDTO dashboardDTO = new DashboardDTO();
 
@@ -60,5 +64,6 @@ public class DashboardResource {
         return new ResponseEntity<>(dashboardDTO, headers, HttpStatus.OK);
 
     }
+
 
 }
