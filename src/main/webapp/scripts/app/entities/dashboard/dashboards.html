@@ -2,65 +2,102 @@
 
     <h2 translate="monitoringApp.dashboard.home.title">Dashboards</h2>
 
-    <div class="table-responsive">
 
+    <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+    <div class="row">
+        <div class="col-xs-12 col-md-8">
 
+            <div class="table-responsive">
 
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th translate="monitoringApp.response.type">Type</th>
-                <th translate="monitoringApp.response.message">Message</th>
-                <th translate="monitoringApp.response.code">Code</th>
-                <th translate="monitoringApp.response.duration">Duration</th>
-                <th translate="monitoringApp.response.configurationName">ConfigurationName</th>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th translate="monitoringApp.response.configurationName">ConfigurationName</th>
+                        <th translate="monitoringApp.response.type">Type</th>
+                        <th translate="monitoringApp.response.message">Message</th>
+                        <th translate="monitoringApp.response.code">Code</th>
+                        <th translate="monitoringApp.response.duration">Duration</th>
+                        <th translate="monitoringApp.response.date">Date</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="response in dashboards.responses">
+                        <td><a ui-sref="responseDetail({id:response.id})">{{response.configurationName}}</a></td>
+                        <td>{{response.type}}</td>
+                        <td>{{response.message}}</td>
+                        <td>{{response.code}}</td>
+                        <td>{{response.duration}}</td>
+                        <td>{{response.date}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
 
-                <th translate="monitoringApp.response.date">Date</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="response in responses">
-                <td><a ui-sref="responseDetail({id:response.id})">{{response.id}}</a></td>
-                <td>{{response.type}}</td>
-                <td>{{response.message}}</td>
+        </div>
+        <div class="col-xs-6 col-md-4">
 
-                <td>{{response.code}}</td>
-                <td>{{response.duration}}</td>
-                <td>{{response.configurationName}}</td>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
 
-                <td>{{response.date}}</td>
+                        <th translate="monitoringApp.projectConfiguration.name">Name</th>
+                        <th translate="monitoringApp.projectConfiguration.lastError">LastError</th>
+                        <th translate="monitoringApp.projectConfiguration.lastSucces">LastSucces</th>
+                        <th translate="monitoringApp.projectConfiguration.actif">Actif</th>
 
-            </tr>
-            </tbody>
-        </table>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody infinite-scroll="loadPage(page + 1)" infinite-scroll-disabled="links['last'] == page">
+                    <tr ng-repeat="projectConfiguration in dashboards.projectConfigurations">
+                        <td><a ui-sref="projectConfigurationDetail({id:projectConfiguration.id})">{{projectConfiguration.name}}</a>
+                        </td>
 
+                        <td>{{projectConfiguration.lastError}}</td>
+                        <td>{{projectConfiguration.lastSucces}}</td>
+                        <td>{{projectConfiguration.actif}}</td>
+                        <td>
 
-        <table class="table table-striped">
-            <thead>
-            <tr>
+                            <div ng-switch on="projectConfiguration">
+                                <div ng-switch-when="projectConfiguration.actif== false">
+                                    <img class="picto" src="/assets/img/redcross.png"/>
+                                </div>
+                                <div ng-switch-when="empty projectConfiguration.lastError">
+                                    <img class="picto" src="/assets/img/redcross.png"/>
+                                </div>
+                                <div ng-switch-when="projectConfiguration.lastError.time < conf.lastSucces.time">
+                                    <img class="picto" src="/assets/img/redcross.png"/>
+                                </div>
+                                <div ng-switch-when="projectConfiguration.lastSucces.time < conf.lastError.time">
+                                    <img class="picto" src="/assets/img/redcross.png"/>
+                                </div>
+                                <div ng-switch-default>
+                                    <img class="picto" src="/assets/img/ledgreen.png"/>
+                                </div>
+                            </div>
+                        </td>
 
-                <th translate="monitoringApp.projectConfiguration.name">Name</th>
-                <th translate="monitoringApp.projectConfiguration.lastError">LastError</th>
-                <th translate="monitoringApp.projectConfiguration.lastSucces">LastSucces</th>
-                <th translate="monitoringApp.projectConfiguration.actif">Actif</th>
+                    </tr>
+                    </tbody>
+                </table>
 
-                <th></th>
-            </tr>
-            </thead>
-            <tbody infinite-scroll="loadPage(page + 1)" infinite-scroll-disabled="links['last'] == page">
-            <tr ng-repeat="projectConfiguration in projectConfigurations">
-                <td><a ui-sref="projectConfigurationDetail({id:projectConfiguration.id})">{{projectConfiguration.name}}</a></td>
-                <td>{{projectConfiguration.name}}</td>
-                <td>{{projectConfiguration.lastError}}</td>
-                <td>{{projectConfiguration.lastSucces}}</td>
-                <td>{{projectConfiguration.actif}}</td>
+            </div>
+            <div class="alert alert-info">
+                <h6>Legend</h6>
 
-            </tr>
-            </tbody>
-        </table>
-
-
+                <p class="list-group-item-text">
+                    <img src="/assets/img/redcross.png"/> The service is stopped<br/>
+                    <img src="/assets/img/ledgreen.png"/> The service is up<br/>
+                    <img src="/assets/img/ledorange.png"/> The service is experiencing intermittent problems<br/>
+                    <img src="/assets/img/ledred.png"/> The service is currently down<br/>
+                </p>
+            </div>
+        </div>
     </div>
+
+
+
+
 </div>

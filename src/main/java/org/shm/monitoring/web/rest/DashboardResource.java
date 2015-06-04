@@ -45,7 +45,7 @@ public class DashboardResource {
     /**
      * GET  /dashboard -> get 10 last the responses and projectConfiguration.
      */
-    @RequestMapping(value = "/dashboard",
+    @RequestMapping(value = "/dashboards",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
@@ -54,7 +54,8 @@ public class DashboardResource {
         throws URISyntaxException {
         DashboardDTO dashboardDTO = new DashboardDTO();
 
-        Page<Response> page = responseRepository.findAll(PaginationUtil.generatePageRequest(0, 10));
+        Page<Response> page = responseRepository.findByTypeOrderByIdDesc("ERROR",PaginationUtil.generatePageRequest(0, 10));
+            //responseRepository.findAll(PaginationUtil.generatePageRequest(0, 10));
         List<ProjectConfiguration> projectConfigurations = projectConfigurationRepository.findAll();
 
         dashboardDTO.setProjectConfigurations(projectConfigurations);

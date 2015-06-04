@@ -122,7 +122,7 @@ public class TestConnectionService {
             final PrintWriter printWriter = new PrintWriter(writer);
             e.printStackTrace(printWriter);
             httpResponse.setStackTrace(writer.toString());
-            log.error(e.getMessage(), e);
+            log.error("une erreur :"+e.getMessage(), e);
         }
         return httpResponse;
     }

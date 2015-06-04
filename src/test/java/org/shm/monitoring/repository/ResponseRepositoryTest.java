@@ -14,8 +14,10 @@ import org.shm.monitoring.security.AuthoritiesConstants;
 import org.shm.monitoring.security.SecurityUtils;
 import org.shm.monitoring.web.rest.ResponseResource;
 import org.shm.monitoring.web.rest.TestUtil;
+import org.shm.monitoring.web.rest.util.PaginationUtil;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
@@ -50,7 +52,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
-@IntegrationTest
 public class ResponseRepositoryTest {
 
     private static final DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
@@ -187,11 +188,31 @@ public class ResponseRepositoryTest {
         responseRepository.save(response);
         databaseSizeBeforeCreate = responseRepository.findAll().size();
         assertThat(databaseSizeBeforeCreate ).isEqualTo(1);
-        Long count=responseRepository.deleteByTypeAndDateBefore("ERROR",DateTime.now().minusDays(-1));
+        Long count=responseRepository.deleteByTypeAndDateBefore("ERROR", DateTime.now().minusDays(-1));
         assertThat(count ).isEqualTo(1);
         databaseSizeBeforeCreate = responseRepository.findAll().size();
         assertThat(databaseSizeBeforeCreate ).isEqualTo(0);
     }
 
+
+    @Test
+    @Transactional
+    public void findByTypeOrderByIdDesc() throws Exception {
+
+
+        responseRepository.findAll();
+
+        int databaseSizeBeforeCreate = responseRepository.findAll().size();
+
+        responseRepository.deleteAll();
+        databaseSizeBeforeCreate = responseRepository.findAll().size();
+        assertThat(databaseSizeBeforeCreate ).isEqualTo(0);
+        responseRepository.save(response);
+        databaseSizeBeforeCreate = responseRepository.findAll().size();
+        assertThat(databaseSizeBeforeCreate ).isEqualTo(1);
+        Page<Response> list=responseRepository.findByTypeOrderByIdDesc("ERROR", PaginationUtil.generatePageRequest(0, 10));
+        assertThat(list.getTotalElements()).isEqualTo(1);
+
+    }
 
 }

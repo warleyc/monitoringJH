@@ -2,6 +2,8 @@ package org.shm.monitoring.repository;
 
 import org.joda.time.DateTime;
 import org.shm.monitoring.domain.Response;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,6 +29,8 @@ public interface ResponseRepository extends JpaRepository<Response,Long> {
     Long deleteByTypeAndDateBefore(String type,DateTime date);
 
     List<Response> removeByType(String type);
+
+    Page<Response> findByTypeOrderByIdDesc(String type,Pageable pageable);
 
 
     @Modifying
