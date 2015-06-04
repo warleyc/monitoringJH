@@ -185,22 +185,8 @@
                     <th>ID</th>
                     <th translate="monitoringApp.projectConfiguration.name">Name</th>
                     <th translate="monitoringApp.projectConfiguration.url">Url</th>
-                    <th translate="monitoringApp.projectConfiguration.post">Post</th>
-                    <th translate="monitoringApp.projectConfiguration.parametre">Parametre</th>
                     <th translate="monitoringApp.projectConfiguration.requestMethod">RequestMethod</th>
-                    <th translate="monitoringApp.projectConfiguration.header">Header</th>
-                    <th translate="monitoringApp.projectConfiguration.frequence">Frequence</th>
-                    <th translate="monitoringApp.projectConfiguration.login">Login</th>
-                    <th translate="monitoringApp.projectConfiguration.password2">Password2</th>
-                    <th translate="monitoringApp.projectConfiguration.checkMessage">CheckMessage</th>
-                    <th translate="monitoringApp.projectConfiguration.lastError">LastError</th>
-                    <th translate="monitoringApp.projectConfiguration.lastSucces">LastSucces</th>
                     <th translate="monitoringApp.projectConfiguration.actif">Actif</th>
-                    <th translate="monitoringApp.projectConfiguration.alertSMS">AlertSMS</th>
-                    <th translate="monitoringApp.projectConfiguration.alertMail">AlertMail</th>
-                    <th translate="monitoringApp.projectConfiguration.email">Email</th>
-                    <th translate="monitoringApp.projectConfiguration.contentType">ContentType</th>
-                    <th translate="monitoringApp.projectConfiguration.soap">Soap</th>
                     <th></th>
                 </tr>
             </thead>
@@ -209,22 +195,8 @@
                     <td><a ui-sref="projectConfigurationDetail({id:projectConfiguration.id})">{{projectConfiguration.id}}</a></td>
                     <td>{{projectConfiguration.name}}</td>
                     <td>{{projectConfiguration.url}}</td>
-                    <td>{{projectConfiguration.post}}</td>
-                    <td>{{projectConfiguration.parametre}}</td>
                     <td>{{projectConfiguration.requestMethod}}</td>
-                    <td>{{projectConfiguration.header}}</td>
-                    <td>{{projectConfiguration.frequence}}</td>
-                    <td>{{projectConfiguration.login}}</td>
-                    <td>{{projectConfiguration.password2}}</td>
-                    <td>{{projectConfiguration.checkMessage}}</td>
-                    <td>{{projectConfiguration.lastError}}</td>
-                    <td>{{projectConfiguration.lastSucces}}</td>
                     <td>{{projectConfiguration.actif}}</td>
-                    <td>{{projectConfiguration.alertSMS}}</td>
-                    <td>{{projectConfiguration.alertMail}}</td>
-                    <td>{{projectConfiguration.email}}</td>
-                    <td>{{projectConfiguration.contentType}}</td>
-                    <td>{{projectConfiguration.soap}}</td>
                     <td>
                         <button type="submit"
                                 ui-sref="projectConfigurationDetail({id:projectConfiguration.id})"
@@ -240,6 +212,11 @@
                                 ng-click="delete(projectConfiguration.id)"
                                 class="btn btn-danger btn-sm">
                             <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
+                        </button>
+                        <button type="submit"
+                                ng-click="launch(projectConfiguration.id)"
+                                class="btn btn-success btn-sm">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="monitoringApp.projectConfiguration.action.launch"> Launch</span>
                         </button>
                     </td>
                 </tr>

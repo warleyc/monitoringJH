@@ -12,6 +12,9 @@
             "detail": {
                 "title": "ProjectConfiguration"
             },
+            "action": {
+                "launch": "Launch"
+            },
             "name": "Name",
             "url": "Url",
             "post": "Post",

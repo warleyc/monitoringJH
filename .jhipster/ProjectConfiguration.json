@@ -172,6 +172,6 @@
     "fieldsContainDateTime": true,
     "fieldsContainDate": false,
     "changelogDate": "20150519143448",
-    "pagination": "infinite-scroll",
+    "pagination": "pagination",
     "validation": false
 }

@@ -19,10 +19,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 @Service
-public class TestServices /*implements Callable<String>*/ {
+public class ProjectConfigurationServices /*implements Callable<String>*/ {
 
-    private final org.slf4j.Logger logger = LoggerFactory.getLogger(TestServices.class);
-
+    private final org.slf4j.Logger logger = LoggerFactory.getLogger(ProjectConfigurationServices.class);
 
 
     @Inject
@@ -36,7 +35,6 @@ public class TestServices /*implements Callable<String>*/ {
     private SendNotification sendNotification;
 
 
-
     public String call() {
         //testAndSendAlert(configuration);
         return "";
@@ -45,7 +43,7 @@ public class TestServices /*implements Callable<String>*/ {
 
     public boolean test() {
         List<ProjectConfiguration> projectConfigurations = projectConfigurationRepository.findAll();
-        logger.info("projectConfigurations size"+projectConfigurations);
+        logger.info("projectConfigurations size" + projectConfigurations);
         for (ProjectConfiguration projectConfiguration : projectConfigurations) {
             if (projectConfiguration.getActif()) {
                 testAndSendAlert(projectConfiguration);
@@ -199,7 +197,7 @@ public class TestServices /*implements Callable<String>*/ {
             utme = "5(" + log.getType() + "*" + URLEncoder.encode(url, "UTF-8")
                 + ")(" + httpResponse.getTime() + ")";
         } catch (UnsupportedEncodingException e) {
-            logger.error( "Erreur sur l'encodage", e);
+            logger.error("Erreur sur l'encodage", e);
 
         }
 

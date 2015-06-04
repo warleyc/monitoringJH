@@ -8,7 +8,6 @@ angular.module('monitoringApp')
                 method: 'GET',
                 transformResponse: function (data) {
                     data = angular.fromJson(data);
-                    console.log("nicolas ici");
                     data.lastError = DateUtils.convertDateTimeFromServer(data.lastError);
                     data.lastSucces = DateUtils.convertDateTimeFromServer(data.lastSucces);
                     return data;

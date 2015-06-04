@@ -3,6 +3,8 @@ package org.shm.monitoring.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import org.shm.monitoring.domain.ProjectConfiguration;
 import org.shm.monitoring.repository.ProjectConfigurationRepository;
+import org.shm.monitoring.service.ProjectConfigurationServices;
+import org.shm.monitoring.web.dto.HttpResponse;
 import org.shm.monitoring.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,6 +32,9 @@ public class ProjectConfigurationResource {
 
     @Inject
     private ProjectConfigurationRepository projectConfigurationRepository;
+
+    @Inject
+    private ProjectConfigurationServices projectConfigurationService;
 
     /**
      * POST  /projectConfigurations -> Create a new projectConfiguration.
@@ -105,4 +110,26 @@ public class ProjectConfigurationResource {
         log.debug("REST request to delete ProjectConfiguration : {}", id);
         projectConfigurationRepository.delete(id);
     }
+
+    /**
+     * LAUNCH  /projectConfigurations/:id -> delete the "id" projectConfiguration.
+     */
+    @RequestMapping(value = "/projectConfigurations/launch/{id}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<String> launch(@PathVariable Long id) {
+        log.debug("REST request to launch ProjectConfiguration : {}", id);
+        ProjectConfiguration projectConfiguration=projectConfigurationRepository.findOne(id);
+        HttpResponse response =projectConfigurationService.testAndSaveLog(projectConfiguration);
+        return new ResponseEntity<String>(HttpStatus.OK);
+        /*return response.get
+        return Optional.ofNullable(projectConfigurationService.testAndSaveLog(projectConfiguration))
+            .map(reponse.get-> new ResponseEntity<String>(HttpStatus.OK))
+            .orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
+    */
+    }
+
+
+
 }

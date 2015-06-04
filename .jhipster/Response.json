@@ -86,6 +86,6 @@
     "fieldsContainDateTime": true,
     "fieldsContainDate": false,
     "changelogDate": "20150314222833",
-    "pagination": "pagination",
+    "pagination": "infinite-scroll",
     "validation": false
 }

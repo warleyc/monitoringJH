@@ -12,6 +12,9 @@
             "detail": {
                 "title": "ProjectConfiguration"
             },
+            "action": {
+                "launch": "Lancer"
+            },
             "name": "Name",
             "url": "Url",
             "post": "Post",

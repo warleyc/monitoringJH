@@ -1,8 +1,6 @@
 README for monitoring
 ==========================
 
-
-
 Heroku
 
 
@@ -10,7 +8,7 @@ Your app should now be live. To view it run
 	heroku open
 	
 And you can view the logs with this command
-	heroku logs --tail
+     heroku logs --tail
 	
 After application modification, repackage it with
 	mvn package -Pprod -DskipTests

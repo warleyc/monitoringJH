@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('monitoringApp')
-    .controller('ProjectConfigurationController', function ($scope, ProjectConfiguration, ParseLinks) {
+    .controller('ProjectConfigurationController', function ($scope, ProjectConfiguration,ProjectConfigurationLaunch, ParseLinks) {
         $scope.projectConfigurations = [];
         $scope.page = 1;
         $scope.loadAll = function() {
@@ -50,6 +50,16 @@ angular.module('monitoringApp')
                 $('#deleteProjectConfigurationConfirmation').modal('show');
             });
         };
+
+
+        $scope.launch = function (id) {
+            ProjectConfigurationLaunch.launch({id: id}, function(result) {
+                console.log("nicolas");
+                $scope.projectConfiguration = result;
+                $('#deleteProjectConfigurationConfirmation').modal('show');
+            });
+        };
+
 
         $scope.confirmDelete = function (id) {
             ProjectConfiguration.delete({id: id},

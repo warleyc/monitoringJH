@@ -2,7 +2,6 @@ package org.shm.monitoring.service;
 
 import com.codahale.metrics.annotation.Timed;
 import org.joda.time.DateTime;
-import org.shm.monitoring.domain.Response;
 import org.shm.monitoring.repository.ResponseRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +26,7 @@ public class CronService {
     @Inject
     private ResponseRepository responseRepository;
     @Inject
-    private TestServices testServices;
+    private ProjectConfigurationServices projectConfigurationServices;
 
 
     @Inject
@@ -48,7 +47,7 @@ public class CronService {
             log.error("checkWebServices Error :", e);
         }
 */
-        testServices.test();
+        projectConfigurationServices.test();
 
 /*
         long end = System.currentTimeMillis();
