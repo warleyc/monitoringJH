@@ -19,7 +19,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 @Service
-public class ProjectConfigurationServices /*implements Callable<String>*/ {
+public class ProjectConfigurationServices {
 
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(ProjectConfigurationServices.class);
 
@@ -35,12 +35,10 @@ public class ProjectConfigurationServices /*implements Callable<String>*/ {
     private SendNotification sendNotification;
 
 
-    public String call() {
-        //testAndSendAlert(configuration);
-        return "";
-    }
-
-
+    /**
+     *
+     * @return
+     */
     public boolean test() {
         List<ProjectConfiguration> projectConfigurations = projectConfigurationRepository.findAll();
         logger.info("projectConfigurations size" + projectConfigurations);
@@ -52,6 +50,10 @@ public class ProjectConfigurationServices /*implements Callable<String>*/ {
         return true;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean testFutur() {
 
 
@@ -117,6 +119,11 @@ public class ProjectConfigurationServices /*implements Callable<String>*/ {
 
     }
 
+    /**
+     *
+     * @param projectConfiguration
+     * @return
+     */
     public HttpResponse testAndSaveLog(ProjectConfiguration projectConfiguration) {
 
         long start = System.currentTimeMillis();
@@ -131,6 +138,10 @@ public class ProjectConfigurationServices /*implements Callable<String>*/ {
         return httpResponse;
     }
 
+    /**
+     *
+     * @param httpResponse
+     */
     private void save(HttpResponse httpResponse) {
         Response log = new Response();
         log.setDate(DateTime.now());
@@ -168,12 +179,22 @@ public class ProjectConfigurationServices /*implements Callable<String>*/ {
 
     }
 
+    /**
+     *
+     * @param httpResponse
+     * @return
+     */
     private boolean isSucces(HttpResponse httpResponse) {
         return httpResponse.getCode() == 200
             && checkMessage(httpResponse.getProjectConfiguration().getCheckMessage(),
             httpResponse);
     }
 
+    /**
+     *
+     * @param httpResponse
+     * @param log
+     */
     private void sendStatistiques(HttpResponse httpResponse, Response log) {
 
 

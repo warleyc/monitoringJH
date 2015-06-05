@@ -112,7 +112,7 @@ public class ProjectConfigurationResource {
     }
 
     /**
-     * LAUNCH  /projectConfigurations/:id -> delete the "id" projectConfiguration.
+     * LAUNCH  /projectConfigurations/launch/:id -> launch the "id" projectConfiguration.
      */
     @RequestMapping(value = "/projectConfigurations/launch/{id}",
         method = RequestMethod.GET,
@@ -122,14 +122,10 @@ public class ProjectConfigurationResource {
         log.debug("REST request to launch ProjectConfiguration : {}", id);
         ProjectConfiguration projectConfiguration=projectConfigurationRepository.findOne(id);
         HttpResponse response =projectConfigurationService.testAndSaveLog(projectConfiguration);
-        return new ResponseEntity<String>(HttpStatus.OK);
-        /*return response.get
+
         return Optional.ofNullable(projectConfigurationService.testAndSaveLog(projectConfiguration))
-            .map(reponse.get-> new ResponseEntity<String>(HttpStatus.OK))
+            .map(reponse-> new ResponseEntity<String>(HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
-    */
     }
-
-
 
 }
