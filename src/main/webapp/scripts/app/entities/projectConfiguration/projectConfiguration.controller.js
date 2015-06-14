@@ -54,7 +54,7 @@ angular.module('monitoringApp')
 
         $scope.launch = function (id) {
             ProjectConfigurationLaunch.launch({id: id}, function(result) {
-                console.log("nicolas");
+                console.log("nicolas lala");
                 $scope.projectConfiguration = result;
                 $('#deleteProjectConfigurationConfirmation').modal('show');
             });
