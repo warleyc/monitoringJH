@@ -118,14 +118,16 @@ public class ProjectConfigurationResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<String> launch(@PathVariable Long id) {
+    public ResponseEntity<HttpResponse > launch(@PathVariable Long id) {
         log.debug("REST request to launch ProjectConfiguration : {}", id);
         ProjectConfiguration projectConfiguration=projectConfigurationRepository.findOne(id);
-        HttpResponse response =projectConfigurationService.testAndSaveLog(projectConfiguration);
 
         return Optional.ofNullable(projectConfigurationService.testAndSaveLog(projectConfiguration))
-            .map(reponse-> new ResponseEntity<String>(HttpStatus.OK))
+            .map(response -> new ResponseEntity<>(
+                response,
+                HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
+
     }
 
 }

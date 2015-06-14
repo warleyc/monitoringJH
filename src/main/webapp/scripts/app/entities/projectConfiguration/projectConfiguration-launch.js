@@ -6,8 +6,9 @@ angular.module('monitoringApp')
             launch: function (id) {
                 return $http.get('api/projectConfigurations/launch/'+id.id).then(function (response) {
 
-                    console.log("nicolas ici ");
-
+                    console.log("nicolas code : "+response.data.code);
+                    console.log("nicolas message : "+response.data.responseMessage);
+                    $rootScope.response = response;
                     $('#launchResultProjectConfiguration').modal('show');
                     return response.data;
                 });
