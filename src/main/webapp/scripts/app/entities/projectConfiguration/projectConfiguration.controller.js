@@ -53,10 +53,10 @@ angular.module('monitoringApp')
 
 
         $scope.launch = function (id) {
-            ProjectConfigurationLaunch.launch({id: id}, function(result) {
+            ProjectConfigurationLaunch.launch({id: id,scope: $scope}, function(result) {
                 console.log("nicolas lala");
-                $scope.projectConfiguration = result;
-                $('#deleteProjectConfigurationConfirmation').modal('show');
+                $scope.response = result;
+                $('#launchResultProjectConfiguration').modal('show');
             });
         };
 

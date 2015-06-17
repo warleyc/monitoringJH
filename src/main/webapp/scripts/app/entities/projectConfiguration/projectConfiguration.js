@@ -19,6 +19,7 @@ angular.module('monitoringApp')
                 resolve: {
                     translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                         $translatePartialLoader.addPart('projectConfiguration');
+                        $translatePartialLoader.addPart('response');
                         return $translate.refresh();
                     }]
                 }
@@ -39,6 +40,25 @@ angular.module('monitoringApp')
                 resolve: {
                     translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                         $translatePartialLoader.addPart('projectConfiguration');
+                        return $translate.refresh();
+                    }]
+                }
+            }).state('projectConfigurationLaunch', {
+                parent: 'entity',
+                url: '/projectConfiguration/:id',
+                data: {
+                    roles: ['ROLE_USER'],
+                    pageTitle: 'monitoringApp.projectConfiguration.detail.title'
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'scripts/app/entities/projectConfiguration/projectConfiguration-launch.html',
+                        controller: 'ProjectConfigurationDetailController'
+                    }
+                },
+                resolve: {
+                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                        $translatePartialLoader.addPart('response');
                         return $translate.refresh();
                     }]
                 }
