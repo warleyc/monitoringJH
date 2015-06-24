@@ -5,9 +5,11 @@ import com.codahale.metrics.annotation.Timed;
 import org.shm.monitoring.domain.ProjectConfiguration;
 import org.shm.monitoring.domain.Response;
 
+import org.shm.monitoring.repository.JdbcQueryDashBoardRepository;
 import org.shm.monitoring.repository.ProjectConfigurationRepository;
 import org.shm.monitoring.repository.ResponseRepository;
 import org.shm.monitoring.web.rest.dto.DashboardDTO;
+import org.shm.monitoring.web.rest.dto.SerieDTO;
 import org.shm.monitoring.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,6 +42,9 @@ public class DashboardResource {
     @Inject
     private ProjectConfigurationRepository projectConfigurationRepository;
 
+    @Inject
+    private JdbcQueryDashBoardRepository jdbcQueryDashBoardRepository;
+
 
 
     /**
@@ -57,14 +62,18 @@ public class DashboardResource {
         Page<Response> page = responseRepository.findByTypeOrderByIdDesc("ERROR",PaginationUtil.generatePageRequest(0, 10));
             //responseRepository.findAll(PaginationUtil.generatePageRequest(0, 10));
         List<ProjectConfiguration> projectConfigurations = projectConfigurationRepository.findAll();
+        List<SerieDTO> series=jdbcQueryDashBoardRepository.selectSeries();
+
 
         dashboardDTO.setProjectConfigurations(projectConfigurations);
         dashboardDTO.setResponses(page.getContent());
-
+        dashboardDTO.setSeries(series);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/responses", 0, 10);
         return new ResponseEntity<>(dashboardDTO, headers, HttpStatus.OK);
 
     }
+
+
 
 
 }

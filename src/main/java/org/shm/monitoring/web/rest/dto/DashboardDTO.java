@@ -13,6 +13,10 @@ public class DashboardDTO {
 
     List<ProjectConfiguration> projectConfigurations;
 
+    List <SerieDTO> series;
+
+
+
     public DashboardDTO(List<Response> responses ,List<ProjectConfiguration> projectConfigurations) {
         this.responses = responses;
         this.projectConfigurations = projectConfigurations;
@@ -36,6 +40,14 @@ public class DashboardDTO {
 
     public void setResponses(List<Response> responses) {
         this.responses = responses;
+    }
+
+    public List<SerieDTO> getSeries() {
+        return series;
+    }
+
+    public void setSeries(List<SerieDTO> series) {
+        this.series = series;
     }
 
     @Override
