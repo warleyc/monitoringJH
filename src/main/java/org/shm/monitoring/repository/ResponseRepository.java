@@ -2,6 +2,7 @@ package org.shm.monitoring.repository;
 
 import org.joda.time.DateTime;
 import org.shm.monitoring.domain.Response;
+import org.shm.monitoring.web.rest.dto.SerieDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
@@ -33,13 +34,10 @@ public interface ResponseRepository extends JpaRepository<Response,Long> {
     Page<Response> findByTypeOrderByIdDesc(String type,Pageable pageable);
 
 
+
     @Modifying
     @Transactional
     @Query("delete from Response r where r.type = ?1")
     void deleteResponsesByType(String type);
-
-
-
-
 
 }
