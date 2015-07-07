@@ -9,15 +9,15 @@ import org.joda.time.format.ISODateTimeFormat;
 
 import java.io.IOException;
 
-/**
- * ISO 8601 date format
- * Jackson deserializer for displaying Joda DateTime objects.
- */
+ /**
+  * Custom Jackson deserializer for transforming a JSON object (using the ISO 8601 date format)
+  * to a Joda LocalDate object.
+  */
 public class ISO8601LocalDateDeserializer extends JsonDeserializer<LocalDate> {
 
     @Override
     public LocalDate deserialize(JsonParser jp, DeserializationContext ctxt)
-        throws IOException {
+            throws IOException {
         JsonToken t = jp.getCurrentToken();
         if (t == JsonToken.VALUE_STRING) {
             String str = jp.getText().trim();

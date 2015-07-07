@@ -5,7 +5,7 @@ angular.module('monitoringApp')
         $stateProvider
             .state('projectConfiguration', {
                 parent: 'entity',
-                url: '/projectConfiguration',
+                url: '/projectConfigurations',
                 data: {
                     roles: ['ROLE_USER'],
                     pageTitle: 'monitoringApp.projectConfiguration.home.title'
@@ -25,9 +25,9 @@ angular.module('monitoringApp')
                     }]
                 }
             })
-            .state('projectConfigurationDetail', {
+            .state('projectConfiguration.detail', {
                 parent: 'entity',
-                url: '/projectConfiguration/:id',
+                url: '/projectConfiguration/{id}',
                 data: {
                     roles: ['ROLE_USER'],
                     pageTitle: 'monitoringApp.projectConfiguration.detail.title'
@@ -42,8 +42,57 @@ angular.module('monitoringApp')
                     translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                         $translatePartialLoader.addPart('projectConfiguration');
                         return $translate.refresh();
+                    }],
+                    entity: ['$stateParams', 'ProjectConfiguration', function($stateParams, ProjectConfiguration) {
+                        return ProjectConfiguration.get({id : $stateParams.id});
                     }]
                 }
+            })
+            .state('projectConfiguration.new', {
+                parent: 'projectConfiguration',
+                url: '/new',
+                data: {
+                    roles: ['ROLE_USER'],
+                },
+                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+                    $modal.open({
+                        templateUrl: 'scripts/app/entities/projectConfiguration/projectConfiguration-dialog.html',
+                        controller: 'ProjectConfigurationDialogController',
+                        size: 'lg',
+                        resolve: {
+                            entity: function () {
+                                return {name: null, url: null, post: null, parametre: null, requestMethod: null, header: null, frequence: null, login: null, password2: null, checkMessage: null, lastError: null, lastSucces: null, actif: null, alertSMS: null, alertMail: null, email: null, contentType: null, soap: null, id: null};
+                            }
+                        }
+                    }).result.then(function(result) {
+                        $state.go('projectConfiguration', null, { reload: true });
+                    }, function() {
+                        $state.go('projectConfiguration');
+                    })
+                }]
+            })
+            .state('projectConfiguration.edit', {
+                parent: 'projectConfiguration',
+                url: '/{id}/edit',
+                data: {
+                    roles: ['ROLE_USER'],
+                },
+                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+                    $modal.open({
+                        templateUrl: 'scripts/app/entities/projectConfiguration/projectConfiguration-dialog.html',
+                        controller: 'ProjectConfigurationDialogController',
+                        size: 'lg',
+                        resolve: {
+                            entity: ['ProjectConfiguration', function(ProjectConfiguration) {
+                                return ProjectConfiguration.get({id : $stateParams.id});
+                            }]
+                        }
+                    }).result.then(function(result) {
+                        $state.go('projectConfiguration', null, { reload: true });
+                    }, function() {
+                        $state.go('^');
+                    })
+                }]
             }).state('projectConfigurationLaunch', {
                 parent: 'entity',
                 url: '/projectConfiguration/:id',

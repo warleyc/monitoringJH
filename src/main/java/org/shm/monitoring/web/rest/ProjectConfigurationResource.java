@@ -43,13 +43,13 @@ public class ProjectConfigurationResource {
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Void> create(@RequestBody ProjectConfiguration projectConfiguration) throws URISyntaxException {
+    public ResponseEntity<ProjectConfiguration> create(@RequestBody ProjectConfiguration projectConfiguration) throws URISyntaxException {
         log.debug("REST request to save ProjectConfiguration : {}", projectConfiguration);
         if (projectConfiguration.getId() != null) {
-            return ResponseEntity.badRequest().header("Failure", "A new projectConfiguration cannot already have an ID").build();
+            return ResponseEntity.badRequest().header("Failure", "A new projectConfiguration cannot already have an ID").body(null);
         }
-        projectConfigurationRepository.save(projectConfiguration);
-        return ResponseEntity.created(new URI("/api/projectConfigurations/" + projectConfiguration.getId())).build();
+        ProjectConfiguration result = projectConfigurationRepository.save(projectConfiguration);
+        return ResponseEntity.created(new URI("/api/projectConfigurations/" + projectConfiguration.getId())).body(result);
     }
 
     /**
@@ -59,13 +59,13 @@ public class ProjectConfigurationResource {
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Void> update(@RequestBody ProjectConfiguration projectConfiguration) throws URISyntaxException {
+    public ResponseEntity<ProjectConfiguration> update(@RequestBody ProjectConfiguration projectConfiguration) throws URISyntaxException {
         log.debug("REST request to update ProjectConfiguration : {}", projectConfiguration);
         if (projectConfiguration.getId() == null) {
             return create(projectConfiguration);
         }
-        projectConfigurationRepository.save(projectConfiguration);
-        return ResponseEntity.ok().build();
+        ProjectConfiguration result = projectConfigurationRepository.save(projectConfiguration);
+        return ResponseEntity.ok().body(result);
     }
 
     /**

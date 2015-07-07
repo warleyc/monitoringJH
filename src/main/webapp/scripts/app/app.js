@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('monitoringApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pascalprecht.translate', 
+               'ui.bootstrap', // for modal dialogs
     'ngResource', 'ui.router', 'ngCookies', 'ngCacheBuster', 'infinite-scroll'])
 
     .run(function ($rootScope, $location, $window, $http, $state, $translate, Language, Auth, Principal, ENV, VERSION) {
@@ -97,9 +98,7 @@ angular.module('monitoringApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pas
             }
         });
 
-
         $httpProvider.interceptors.push('authExpiredInterceptor');
-
 
         
         // Initialize angular-translate

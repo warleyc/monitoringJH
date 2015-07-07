@@ -65,7 +65,7 @@ class ResponseGatlingTest extends Simulation {
             .check(status.is(200)))
             .pause(10 seconds, 20 seconds)
             .exec(http("Create new response")
-            .put("/api/responses")
+            .post("/api/responses")
             .headers(headers_http_authenticated)
             .body(StringBody("""{"id":null, "type":"SAMPLE_TEXT", "message":"SAMPLE_TEXT", "response":"SAMPLE_TEXT", "code":"0", "duration":null, "configurationName":"SAMPLE_TEXT", "configurationId":null, "emailSent":null, "date":"2020-01-01T00:00:00.000Z"}""")).asJSON
             .check(status.is(201))

@@ -1,12 +1,14 @@
 'use strict';
 
 angular.module('monitoringApp')
-    .controller('ResponseDetailController', function ($scope, $stateParams, Response) {
-        $scope.response = {};
+    .controller('ResponseDetailController', function ($scope, $rootScope, $stateParams, entity, Response) {
+        $scope.response = entity;
         $scope.load = function (id) {
             Response.get({id: id}, function(result) {
-              $scope.response = result;
+                $scope.response = result;
             });
         };
-        $scope.load($stateParams.id);
+        $rootScope.$on('monitoringApp:responseUpdate', function(event, result) {
+            $scope.response = result;
+        });
     });

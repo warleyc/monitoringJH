@@ -16,27 +16,6 @@ angular.module('monitoringApp')
         };
         $scope.loadAll();
 
-        $scope.showUpdate = function (id) {
-            ProjectConfiguration.get({id: id}, function(result) {
-                $scope.projectConfiguration = result;
-                $('#saveProjectConfigurationModal').modal('show');
-            });
-        };
-
-        $scope.save = function () {
-            if ($scope.projectConfiguration.id != null) {
-                ProjectConfiguration.update($scope.projectConfiguration,
-                    function () {
-                        $scope.refresh();
-                    });
-            } else {
-                ProjectConfiguration.save($scope.projectConfiguration,
-                    function () {
-                        $scope.refresh();
-                    });
-            }
-        };
-
         $scope.delete = function (id) {
             ProjectConfiguration.get({id: id}, function(result) {
                 $scope.projectConfiguration = result;
@@ -65,13 +44,10 @@ angular.module('monitoringApp')
 
         $scope.refresh = function () {
             $scope.loadAll();
-            $('#saveProjectConfigurationModal').modal('hide');
             $scope.clear();
         };
 
         $scope.clear = function () {
             $scope.projectConfiguration = {name: null, url: null, post: null, parametre: null, requestMethod: null, header: null, frequence: null, login: null, password2: null, checkMessage: null, lastError: null, lastSucces: null, actif: null, alertSMS: null, alertMail: null, email: null, contentType: null, soap: null, id: null};
-            $scope.editForm.$setPristine();
-            $scope.editForm.$setUntouched();
         };
     });

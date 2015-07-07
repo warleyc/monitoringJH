@@ -38,13 +38,13 @@ public class ResponseResource {
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Void> create(@RequestBody Response response) throws URISyntaxException {
+    public ResponseEntity<Response> create(@RequestBody Response response) throws URISyntaxException {
         log.debug("REST request to save Response : {}", response);
         if (response.getId() != null) {
-            return ResponseEntity.badRequest().header("Failure", "A new response cannot already have an ID").build();
+            return ResponseEntity.badRequest().header("Failure", "A new response cannot already have an ID").body(null);
         }
-        responseRepository.save(response);
-        return ResponseEntity.created(new URI("/api/responses/" + response.getId())).build();
+        Response result = responseRepository.save(response);
+        return ResponseEntity.created(new URI("/api/responses/" + response.getId())).body(result);
     }
 
     /**
@@ -54,13 +54,13 @@ public class ResponseResource {
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Void> update(@RequestBody Response response) throws URISyntaxException {
+    public ResponseEntity<Response> update(@RequestBody Response response) throws URISyntaxException {
         log.debug("REST request to update Response : {}", response);
         if (response.getId() == null) {
             return create(response);
         }
-        responseRepository.save(response);
-        return ResponseEntity.ok().build();
+        Response result = responseRepository.save(response);
+        return ResponseEntity.ok().body(result);
     }
 
     /**

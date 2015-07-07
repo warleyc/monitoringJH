@@ -5,154 +5,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <button class="btn btn-primary" data-toggle="modal" data-target="#saveProjectConfigurationModal" ng-click="clear()">
+                <button class="btn btn-primary" ui-sref="projectConfiguration.new">
                     <span class="glyphicon glyphicon-flash"></span> <span translate="monitoringApp.projectConfiguration.home.createLabel">Create a new ProjectConfiguration</span>
                 </button>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="saveProjectConfigurationModal" tabindex="-1" role="dialog" aria-labelledby="myProjectConfigurationLabel"
-         aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form name="editForm" role="form" novalidate ng-submit="save()">
-
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                                ng-click="clear()">&times;</button>
-                        <h4 class="modal-title" id="myProjectConfigurationLabel" translate="monitoringApp.projectConfiguration.home.createOrEditLabel">Create or edit a ProjectConfiguration</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label translate="global.field.id">ID</label>
-                            <input type="text" class="form-control" name="id"
-                                   ng-model="projectConfiguration.id" readonly>
-                        </div>
-
-                        <div class="form-group">
-                            <label translate="monitoringApp.projectConfiguration.name">Name</label>
-                            <input type="text" class="form-control" name="name"
-                                   ng-model="projectConfiguration.name">
-
-                        </div>
-                        <div class="form-group">
-                            <label translate="monitoringApp.projectConfiguration.url">Url</label>
-                            <input type="text" class="form-control" name="url"
-                                   ng-model="projectConfiguration.url">
-
-                        </div>
-                        <div class="form-group">
-                            <label translate="monitoringApp.projectConfiguration.post">Post</label>
-                            <input type="text" class="form-control" name="post"
-                                   ng-model="projectConfiguration.post">
-
-                        </div>
-                        <div class="form-group">
-                            <label translate="monitoringApp.projectConfiguration.parametre">Parametre</label>
-                            <input type="text" class="form-control" name="parametre"
-                                   ng-model="projectConfiguration.parametre">
-
-                        </div>
-                        <div class="form-group">
-                            <label translate="monitoringApp.projectConfiguration.requestMethod">RequestMethod</label>
-                            <select class="form-control" name="requestMethod" ng-model="projectConfiguration.requestMethod">
-                                <option value="GET">GET</option>
-                                <option value="PUT">PUT</option>
-                                <option value="POST">POST</option>
-                                <option value="DELETE">DELETE</option>
-                            </select>
-
-                        </div>
-                        <div class="form-group">
-                            <label translate="monitoringApp.projectConfiguration.header">Header</label>
-                            <input type="text" class="form-control" name="header"
-                                   ng-model="projectConfiguration.header">
-
-                        </div>
-                        <div class="form-group">
-                            <label translate="monitoringApp.projectConfiguration.frequence">Frequence</label>
-                            <input type="number" class="form-control" name="frequence"
-                                   ng-model="projectConfiguration.frequence">
-
-                        </div>
-                        <div class="form-group">
-                            <label translate="monitoringApp.projectConfiguration.login">Login</label>
-                            <input type="text" class="form-control" name="login"
-                                   ng-model="projectConfiguration.login">
-
-                        </div>
-                        <div class="form-group">
-                            <label translate="monitoringApp.projectConfiguration.password2">Password2</label>
-                            <input type="text" class="form-control" name="password2"
-                                   ng-model="projectConfiguration.password2">
-
-                        </div>
-                        <div class="form-group">
-                            <label translate="monitoringApp.projectConfiguration.checkMessage">CheckMessage</label>
-                            <input type="text" class="form-control" name="checkMessage"
-                                   ng-model="projectConfiguration.checkMessage">
-
-                        </div>
-                        <div class="form-group">
-                            <label translate="monitoringApp.projectConfiguration.lastError">LastError</label>
-                            <input type="datetime-local" class="form-control" name="lastError"
-                                   ng-model="projectConfiguration.lastError" ng-model-options="{timezone: 'UTC'}">
-
-                        </div>
-                        <div class="form-group">
-                            <label translate="monitoringApp.projectConfiguration.lastSucces">LastSucces</label>
-                            <input type="datetime-local" class="form-control" name="lastSucces"
-                                   ng-model="projectConfiguration.lastSucces" ng-model-options="{timezone: 'UTC'}">
-
-                        </div>
-                        <div class="form-group">
-                            <label translate="monitoringApp.projectConfiguration.actif">Actif</label>
-                            <input type="checkbox" class="form-control" name="actif"
-                                   ng-model="projectConfiguration.actif">
-
-                        </div>
-                        <div class="form-group">
-                            <label translate="monitoringApp.projectConfiguration.alertSMS">AlertSMS</label>
-                            <input type="checkbox" class="form-control" name="alertSMS"
-                                   ng-model="projectConfiguration.alertSMS">
-
-                        </div>
-                        <div class="form-group">
-                            <label translate="monitoringApp.projectConfiguration.alertMail">AlertMail</label>
-                            <input type="checkbox" class="form-control" name="alertMail"
-                                   ng-model="projectConfiguration.alertMail">
-
-                        </div>
-                        <div class="form-group">
-                            <label translate="monitoringApp.projectConfiguration.email">Email</label>
-                            <input type="text" class="form-control" name="email"
-                                   ng-model="projectConfiguration.email">
-
-                        </div>
-                        <div class="form-group">
-                            <label translate="monitoringApp.projectConfiguration.contentType">ContentType</label>
-                            <input type="text" class="form-control" name="contentType"
-                                   ng-model="projectConfiguration.contentType">
-
-                        </div>
-                        <div class="form-group">
-                            <label translate="monitoringApp.projectConfiguration.soap">Soap</label>
-                            <input type="checkbox" class="form-control" name="soap"
-                                   ng-model="projectConfiguration.soap">
-
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
-                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
-                        </button>
-                        <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary">
-                            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
-                        </button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
@@ -196,19 +51,19 @@
             </thead>
             <tbody>
                 <tr ng-repeat="projectConfiguration in projectConfigurations">
-                    <td><a ui-sref="projectConfigurationDetail({id:projectConfiguration.id})">{{projectConfiguration.id}}</a></td>
+                    <td><a ui-sref="projectConfiguration.detail({id:projectConfiguration.id})">{{projectConfiguration.id}}</a></td>
                     <td>{{projectConfiguration.name}}</td>
                     <td>{{projectConfiguration.url}}</td>
                     <td>{{projectConfiguration.requestMethod}}</td>
                     <td>{{projectConfiguration.actif}}</td>
                     <td>
                         <button type="submit"
-                                ui-sref="projectConfigurationDetail({id:projectConfiguration.id})"
+                                ui-sref="projectConfiguration.detail({id:projectConfiguration.id})"
                                 class="btn btn-info btn-sm">
                             <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
                         </button>
                         <button type="submit"
-                                ng-click="showUpdate(projectConfiguration.id)"
+                                ui-sref="projectConfiguration.edit({id:projectConfiguration.id})"
                                 class="btn btn-primary btn-sm">
                             <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
                         </button>

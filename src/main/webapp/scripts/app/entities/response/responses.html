@@ -5,96 +5,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <button class="btn btn-primary" data-toggle="modal" data-target="#saveResponseModal" ng-click="clear()">
+                <button class="btn btn-primary" ui-sref="response.new">
                     <span class="glyphicon glyphicon-flash"></span> <span translate="monitoringApp.response.home.createLabel">Create a new Response</span>
                 </button>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="saveResponseModal" tabindex="-1" role="dialog" aria-labelledby="myResponseLabel"
-         aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form name="editForm" role="form" novalidate ng-submit="save()">
-
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                                ng-click="clear()">&times;</button>
-                        <h4 class="modal-title" id="myResponseLabel" translate="monitoringApp.response.home.createOrEditLabel">Create or edit a Response</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label>ID</label>
-                            <input type="text" class="form-control" name="id"
-                                   ng-model="response.id" readonly>
-                        </div>
-
-                        <div class="form-group">
-                            <label translate="monitoringApp.response.type">Type</label>
-                            <input type="text" class="form-control" name="type"
-                                   ng-model="response.type">
-
-                        </div>
-                        <div class="form-group">
-                            <label translate="monitoringApp.response.message">Message</label>
-                            <input type="text" class="form-control" name="message"
-                                   ng-model="response.message">
-
-                        </div>
-                        <div class="form-group">
-                            <label translate="monitoringApp.response.response">Response</label>
-                            <input type="text" class="form-control" name="response"
-                                   ng-model="response.response">
-
-                        </div>
-                        <div class="form-group">
-                            <label translate="monitoringApp.response.code">Code</label>
-                            <input type="number" class="form-control" name="code"
-                                   ng-model="response.code">
-
-                        </div>
-                        <div class="form-group">
-                            <label translate="monitoringApp.response.duration">Duration</label>
-                            <input type="number" class="form-control" name="duration"
-                                   ng-model="response.duration">
-
-                        </div>
-                        <div class="form-group">
-                            <label translate="monitoringApp.response.configurationName">ConfigurationName</label>
-                            <input type="text" class="form-control" name="configurationName"
-                                   ng-model="response.configurationName">
-
-                        </div>
-                        <div class="form-group">
-                            <label translate="monitoringApp.response.configurationId">ConfigurationId</label>
-                            <input type="number" class="form-control" name="configurationId"
-                                   ng-model="response.configurationId">
-
-                        </div>
-                        <div class="form-group">
-                            <label translate="monitoringApp.response.emailSent">EmailSent</label>
-                            <input type="checkbox" class="form-control" name="emailSent"
-                                   ng-model="response.emailSent">
-
-                        </div>
-                        <div class="form-group">
-                            <label translate="monitoringApp.response.date">Date</label>
-                            <input type="datetime-local" class="form-control" name="date"
-                                   ng-model="response.date" ng-model-options="{timezone: 'UTC'}">
-
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
-                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
-                        </button>
-                        <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary">
-                            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
-                        </button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
@@ -128,7 +41,7 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th translate="global.field.id">ID</th>
                     <th translate="monitoringApp.response.type">Type</th>
                     <th translate="monitoringApp.response.message">Message</th>
                     <th translate="monitoringApp.response.response">Response</th>
@@ -141,9 +54,9 @@
                     <th></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody infinite-scroll="loadPage(page + 1)" infinite-scroll-disabled="links['last'] == page">
                 <tr ng-repeat="response in responses">
-                    <td><a ui-sref="responseDetail({id:response.id})">{{response.id}}</a></td>
+                    <td><a ui-sref="response.detail({id:response.id})">{{response.id}}</a></td>
                     <td>{{response.type}}</td>
                     <td>{{response.message}}</td>
                     <td>{{response.response}}</td>
@@ -155,12 +68,12 @@
                     <td>{{response.date}}</td>
                     <td>
                         <button type="submit"
-                                ui-sref="responseDetail({id:response.id})"
+                                ui-sref="response.detail({id:response.id})"
                                 class="btn btn-info btn-sm">
                             <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
                         </button>
                         <button type="submit"
-                                ng-click="showUpdate(response.id)"
+                                ui-sref="response.edit({id:response.id})"
                                 class="btn btn-primary btn-sm">
                             <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
                         </button>
@@ -173,18 +86,5 @@
                 </tr>
             </tbody>
         </table>
-        <nav>
-            <ul class="pagination">
-                <li ng-show="links['first']" ng-click="loadPage(links['first'])"><a>&lt;&lt;</a></li>
-                <li ng-show="links['prev']" ng-click="loadPage(links['prev'])"><a>&lt;</a></li>
-                <li ng-show="page > 2" ng-click="loadPage(page - 2)"><a>{{page - 2}}</a></li>
-                <li ng-show="page > 1" ng-click="loadPage(page - 1)"><a>{{page - 1}}</a></li>
-                <li class="active"><a>{{page}}</a></li>
-                <li ng-show="page < links['last']" ng-click="loadPage(page + 1)"><a>{{page + 1}}</a></li>
-                <li ng-show="page < links['last'] - 1" ng-click="loadPage(page + 2)"><a>{{page + 2}}</a></li>
-                <li ng-show="links['next']" ng-click="loadPage(links['next'])"><a>&gt;</a></li>
-                <li ng-show="links['last']" ng-click="loadPage(links['last'])"><a>&gt;&gt;</a></li>
-            </ul>
-        </nav>
     </div>
 </div>
