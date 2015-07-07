@@ -1,0 +1,80 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myResponseLabel" translate="monitoringApp.response.home.createOrEditLabel">Create or edit a Response</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label translate="global.field.id">ID</label>
+            <input type="text" class="form-control" name="id"
+                    ng-model="response.id" readonly>
+        </div>
+
+        <div class="form-group">
+            <label translate="monitoringApp.response.type" for="field_type">Type</label>
+            <input type="text" class="form-control" name="type" id="field_type"
+                    ng-model="response.type">
+
+        </div>
+        <div class="form-group">
+            <label translate="monitoringApp.response.message" for="field_message">Message</label>
+            <input type="text" class="form-control" name="message" id="field_message"
+                    ng-model="response.message">
+
+        </div>
+        <div class="form-group">
+            <label translate="monitoringApp.response.response" for="field_response">Response</label>
+            <input type="text" class="form-control" name="response" id="field_response"
+                    ng-model="response.response">
+
+        </div>
+        <div class="form-group">
+            <label translate="monitoringApp.response.code" for="field_code">Code</label>
+            <input type="number" class="form-control" name="code" id="field_code"
+                    ng-model="response.code">
+
+        </div>
+        <div class="form-group">
+            <label translate="monitoringApp.response.duration" for="field_duration">Duration</label>
+            <input type="number" class="form-control" name="duration" id="field_duration"
+                    ng-model="response.duration">
+
+        </div>
+        <div class="form-group">
+            <label translate="monitoringApp.response.configurationName" for="field_configurationName">ConfigurationName</label>
+            <input type="text" class="form-control" name="configurationName" id="field_configurationName"
+                    ng-model="response.configurationName">
+
+        </div>
+        <div class="form-group">
+            <label translate="monitoringApp.response.configurationId" for="field_configurationId">ConfigurationId</label>
+            <input type="number" class="form-control" name="configurationId" id="field_configurationId"
+                    ng-model="response.configurationId">
+
+        </div>
+        <div class="form-group">
+            <label translate="monitoringApp.response.emailSent" for="field_emailSent">EmailSent</label>
+            <input type="checkbox" class="form-control" name="emailSent" id="field_emailSent"
+                    ng-model="response.emailSent">
+
+        </div>
+        <div class="form-group">
+            <label translate="monitoringApp.response.date" for="field_date">Date</label>
+            <input type="datetime-local" class="form-control" name="date" id="field_date"
+                    ng-model="response.date" ng-model-options="{timezone: 'UTC'}">
+
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

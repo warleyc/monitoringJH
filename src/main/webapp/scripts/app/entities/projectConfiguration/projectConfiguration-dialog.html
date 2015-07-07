@@ -1,0 +1,138 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myProjectConfigurationLabel" translate="monitoringApp.projectConfiguration.home.createOrEditLabel">Create or edit a ProjectConfiguration</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label translate="global.field.id">ID</label>
+            <input type="text" class="form-control" name="id"
+                    ng-model="projectConfiguration.id" readonly>
+        </div>
+
+        <div class="form-group">
+            <label translate="monitoringApp.projectConfiguration.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                    ng-model="projectConfiguration.name">
+
+        </div>
+        <div class="form-group">
+            <label translate="monitoringApp.projectConfiguration.url" for="field_url">Url</label>
+            <input type="text" class="form-control" name="url" id="field_url"
+                    ng-model="projectConfiguration.url">
+
+        </div>
+        <div class="form-group">
+            <label translate="monitoringApp.projectConfiguration.post" for="field_post">Post</label>
+            <input type="text" class="form-control" name="post" id="field_post"
+                    ng-model="projectConfiguration.post">
+
+        </div>
+        <div class="form-group">
+            <label translate="monitoringApp.projectConfiguration.parametre" for="field_parametre">Parametre</label>
+            <input type="text" class="form-control" name="parametre" id="field_parametre"
+                    ng-model="projectConfiguration.parametre">
+
+        </div>
+        <div class="form-group">
+            <label translate="monitoringApp.projectConfiguration.requestMethod" for="field_requestMethod">RequestMethod</label>
+            <select class="form-control" name="requestMethod" ng-model="projectConfiguration.requestMethod" id="field_requestMethod">
+               <option value="GET">GET</option>
+               <option value="PUT">PUT</option>
+               <option value="POST">POST</option>
+               <option value="DELETE">DELETE</option>
+            </select>
+
+        </div>
+        <div class="form-group">
+            <label translate="monitoringApp.projectConfiguration.header" for="field_header">Header</label>
+            <input type="text" class="form-control" name="header" id="field_header"
+                    ng-model="projectConfiguration.header">
+
+        </div>
+        <div class="form-group">
+            <label translate="monitoringApp.projectConfiguration.frequence" for="field_frequence">Frequence</label>
+            <input type="number" class="form-control" name="frequence" id="field_frequence"
+                    ng-model="projectConfiguration.frequence">
+
+        </div>
+        <div class="form-group">
+            <label translate="monitoringApp.projectConfiguration.login" for="field_login">Login</label>
+            <input type="text" class="form-control" name="login" id="field_login"
+                    ng-model="projectConfiguration.login">
+
+        </div>
+        <div class="form-group">
+            <label translate="monitoringApp.projectConfiguration.password2" for="field_password2">Password2</label>
+            <input type="text" class="form-control" name="password2" id="field_password2"
+                    ng-model="projectConfiguration.password2">
+
+        </div>
+        <div class="form-group">
+            <label translate="monitoringApp.projectConfiguration.checkMessage" for="field_checkMessage">CheckMessage</label>
+            <input type="text" class="form-control" name="checkMessage" id="field_checkMessage"
+                    ng-model="projectConfiguration.checkMessage">
+
+        </div>
+        <div class="form-group">
+            <label translate="monitoringApp.projectConfiguration.lastError" for="field_lastError">LastError</label>
+            <input type="datetime-local" class="form-control" name="lastError" id="field_lastError"
+                    ng-model="projectConfiguration.lastError" ng-model-options="{timezone: 'UTC'}">
+
+        </div>
+        <div class="form-group">
+            <label translate="monitoringApp.projectConfiguration.lastSucces" for="field_lastSucces">LastSucces</label>
+            <input type="datetime-local" class="form-control" name="lastSucces" id="field_lastSucces"
+                    ng-model="projectConfiguration.lastSucces" ng-model-options="{timezone: 'UTC'}">
+
+        </div>
+        <div class="form-group">
+            <label translate="monitoringApp.projectConfiguration.actif" for="field_actif">Actif</label>
+            <input type="checkbox" class="form-control" name="actif" id="field_actif"
+                    ng-model="projectConfiguration.actif">
+
+        </div>
+        <div class="form-group">
+            <label translate="monitoringApp.projectConfiguration.alertSMS" for="field_alertSMS">AlertSMS</label>
+            <input type="checkbox" class="form-control" name="alertSMS" id="field_alertSMS"
+                    ng-model="projectConfiguration.alertSMS">
+
+        </div>
+        <div class="form-group">
+            <label translate="monitoringApp.projectConfiguration.alertMail" for="field_alertMail">AlertMail</label>
+            <input type="checkbox" class="form-control" name="alertMail" id="field_alertMail"
+                    ng-model="projectConfiguration.alertMail">
+
+        </div>
+        <div class="form-group">
+            <label translate="monitoringApp.projectConfiguration.email" for="field_email">Email</label>
+            <input type="text" class="form-control" name="email" id="field_email"
+                    ng-model="projectConfiguration.email">
+
+        </div>
+        <div class="form-group">
+            <label translate="monitoringApp.projectConfiguration.contentType" for="field_contentType">ContentType</label>
+            <input type="text" class="form-control" name="contentType" id="field_contentType"
+                    ng-model="projectConfiguration.contentType">
+
+        </div>
+        <div class="form-group">
+            <label translate="monitoringApp.projectConfiguration.soap" for="field_soap">Soap</label>
+            <input type="checkbox" class="form-control" name="soap" id="field_soap"
+                    ng-model="projectConfiguration.soap">
+
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>
