@@ -7,15 +7,8 @@ angular.module('monitoringApp')
         $scope.loadAll = function() {
             ProjectConfiguration.query({page: $scope.page, per_page: 20}, function(result, headers) {
                 $scope.links = ParseLinks.parse(headers('link'));
-                for (var i = 0; i < result.length; i++) {
-                    $scope.projectConfigurations.push(result[i]);
-                }
+                $scope.projectConfigurations = result;
             });
-        };
-        $scope.reset = function() {
-            $scope.page = 1;
-            $scope.projectConfigurations = [];
-            $scope.loadAll();
         };
         $scope.loadPage = function(page) {
             $scope.page = page;
@@ -64,14 +57,14 @@ angular.module('monitoringApp')
         $scope.confirmDelete = function (id) {
             ProjectConfiguration.delete({id: id},
                 function () {
-                    $scope.reset();
+                    $scope.loadAll();
                     $('#deleteProjectConfigurationConfirmation').modal('hide');
                     $scope.clear();
                 });
         };
 
         $scope.refresh = function () {
-            $scope.reset();
+            $scope.loadAll();
             $('#saveProjectConfigurationModal').modal('hide');
             $scope.clear();
         };

@@ -19,6 +19,7 @@ angular.module('monitoringApp')
                 resolve: {
                     translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                         $translatePartialLoader.addPart('projectConfiguration');
+                        $translatePartialLoader.addPart('global');
                         $translatePartialLoader.addPart('response');
                         return $translate.refresh();
                     }]

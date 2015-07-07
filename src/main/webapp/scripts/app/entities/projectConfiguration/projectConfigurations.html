@@ -25,7 +25,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label>ID</label>
+                            <label translate="global.field.id">ID</label>
                             <input type="text" class="form-control" name="id"
                                    ng-model="projectConfiguration.id" readonly>
                         </div>
@@ -56,8 +56,12 @@
                         </div>
                         <div class="form-group">
                             <label translate="monitoringApp.projectConfiguration.requestMethod">RequestMethod</label>
-                            <input type="text" class="form-control" name="requestMethod"
-                                   ng-model="projectConfiguration.requestMethod">
+                            <select class="form-control" name="requestMethod" ng-model="projectConfiguration.requestMethod">
+                                <option value="GET">GET</option>
+                                <option value="PUT">PUT</option>
+                                <option value="POST">POST</option>
+                                <option value="DELETE">DELETE</option>
+                            </select>
 
                         </div>
                         <div class="form-group">
@@ -182,7 +186,7 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th translate="global.field.id">ID</th>
                     <th translate="monitoringApp.projectConfiguration.name">Name</th>
                     <th translate="monitoringApp.projectConfiguration.url">Url</th>
                     <th translate="monitoringApp.projectConfiguration.requestMethod">RequestMethod</th>
@@ -190,7 +194,7 @@
                     <th></th>
                 </tr>
             </thead>
-            <tbody infinite-scroll="loadPage(page + 1)" infinite-scroll-disabled="links['last'] == page">
+            <tbody>
                 <tr ng-repeat="projectConfiguration in projectConfigurations">
                     <td><a ui-sref="projectConfigurationDetail({id:projectConfiguration.id})">{{projectConfiguration.id}}</a></td>
                     <td>{{projectConfiguration.name}}</td>
@@ -222,10 +226,20 @@
                 </tr>
             </tbody>
         </table>
+        <nav>
+            <ul class="pagination">
+                <li ng-show="links['first']" ng-click="loadPage(links['first'])"><a>&lt;&lt;</a></li>
+                <li ng-show="links['prev']" ng-click="loadPage(links['prev'])"><a>&lt;</a></li>
+                <li ng-show="page > 2" ng-click="loadPage(page - 2)"><a>{{page - 2}}</a></li>
+                <li ng-show="page > 1" ng-click="loadPage(page - 1)"><a>{{page - 1}}</a></li>
+                <li class="active"><a>{{page}}</a></li>
+                <li ng-show="page < links['last']" ng-click="loadPage(page + 1)"><a>{{page + 1}}</a></li>
+                <li ng-show="page < links['last'] - 1" ng-click="loadPage(page + 2)"><a>{{page + 2}}</a></li>
+                <li ng-show="links['next']" ng-click="loadPage(links['next'])"><a>&gt;</a></li>
+                <li ng-show="links['last']" ng-click="loadPage(links['last'])"><a>&gt;&gt;</a></li>
+            </ul>
+        </nav>
     </div>
-
-
-
 
 
 
@@ -316,7 +330,4 @@
             </div>
         </div>
     </div>
-
-
-
 </div>
