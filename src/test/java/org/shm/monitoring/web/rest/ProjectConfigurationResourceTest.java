@@ -31,6 +31,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import org.shm.monitoring.domain.enumeration.RequestMethodEnum;
+
 /**
  * Test class for the ProjectConfigurationResource REST controller.
  *
@@ -52,8 +54,9 @@ public class ProjectConfigurationResourceTest {
     private static final String UPDATED_POST = "UPDATED_TEXT";
     private static final String DEFAULT_PARAMETRE = "SAMPLE_TEXT";
     private static final String UPDATED_PARAMETRE = "UPDATED_TEXT";
-    private static final String DEFAULT_REQUEST_METHOD = "SAMPLE_TEXT";
-    private static final String UPDATED_REQUEST_METHOD = "UPDATED_TEXT";
+
+    private static final RequestMethodEnum DEFAULT_REQUEST_METHOD = RequestMethodEnum.GET;
+    private static final RequestMethodEnum UPDATED_REQUEST_METHOD = RequestMethodEnum.PUT;
     private static final String DEFAULT_HEADER = "SAMPLE_TEXT";
     private static final String UPDATED_HEADER = "UPDATED_TEXT";
 

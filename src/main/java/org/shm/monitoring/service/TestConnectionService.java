@@ -49,7 +49,7 @@ public class TestConnectionService {
             }
 
 
-            httpURLConnection.setRequestMethod(projectConfiguration.getRequestMethod());
+            httpURLConnection.setRequestMethod(projectConfiguration.getRequestMethod().name());
 
             log.info("  httpURLConnection.getRequestMethod()" + httpURLConnection.getRequestMethod());
 

@@ -13,6 +13,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
+import org.shm.monitoring.domain.enumeration.RequestMethodEnum;
+
 /**
  * A ProjectConfiguration.
  */
@@ -37,8 +39,9 @@ public class ProjectConfiguration implements Serializable {
     @Column(name = "parametre")
     private String parametre;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "request_method")
-    private String requestMethod;
+    private RequestMethodEnum requestMethod;
 
     @Column(name = "header")
     private String header;
@@ -125,11 +128,11 @@ public class ProjectConfiguration implements Serializable {
         this.parametre = parametre;
     }
 
-    public String getRequestMethod() {
+    public RequestMethodEnum getRequestMethod() {
         return requestMethod;
     }
 
-    public void setRequestMethod(String requestMethod) {
+    public void setRequestMethod(RequestMethodEnum requestMethod) {
         this.requestMethod = requestMethod;
     }
 

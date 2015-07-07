@@ -3,6 +3,7 @@ package org.shm.monitoring.service;
 import org.joda.time.DateTime;
 import org.shm.monitoring.domain.ProjectConfiguration;
 import org.shm.monitoring.domain.Response;
+import org.shm.monitoring.domain.enumeration.RequestMethodEnum;
 import org.shm.monitoring.repository.ProjectConfigurationRepository;
 import org.shm.monitoring.repository.ResponseRepository;
 import org.shm.monitoring.web.dto.HttpResponse;
@@ -232,7 +233,7 @@ public class ProjectConfigurationServices {
 
         ProjectConfiguration projectConfiguration = new ProjectConfiguration();
         projectConfiguration.setUrl(targetUrl);
-        projectConfiguration.setRequestMethod("GET");
+        projectConfiguration.setRequestMethod(RequestMethodEnum.GET);
         //HttpResponse httpResponseGoogle =
         testConnectionService.testUrl(projectConfiguration);
     }
@@ -263,7 +264,7 @@ public class ProjectConfigurationServices {
 
         ProjectConfiguration projectConfiguration = new ProjectConfiguration();
         projectConfiguration.setUrl(targetUrl);
-        projectConfiguration.setRequestMethod("GET");
+        projectConfiguration.setRequestMethod(RequestMethodEnum.GET);
         //HttpResponse httpResponseGoogle =
         testConnectionService
             .testUrl(projectConfiguration);
@@ -293,7 +294,7 @@ public class ProjectConfigurationServices {
 
         ProjectConfiguration projectConfiguration = new ProjectConfiguration();
         projectConfiguration.setUrl(targetUrl);
-        projectConfiguration.setRequestMethod("GET");
+        projectConfiguration.setRequestMethod(RequestMethodEnum.GET);
         //HttpResponse httpResponseGoogle =
         testConnectionService.testUrl(projectConfiguration);
     }

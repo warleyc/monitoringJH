@@ -2,6 +2,7 @@ package org.shm.monitoring.service;
 
 import org.shm.monitoring.domain.ProjectConfiguration;
 import org.shm.monitoring.domain.Response;
+import org.shm.monitoring.domain.enumeration.RequestMethodEnum;
 import org.shm.monitoring.helper.stat.Event;
 import org.shm.monitoring.helper.stat.NetworkRequestUtil;
 import org.shm.monitoring.web.dto.HttpResponse;
@@ -14,8 +15,6 @@ import java.util.concurrent.Callable;
 @Service
 public class StatistiqueServices /*implements Callable<String>*/ {
 
-
-    private static final String TYPE_GET = "GET";
     private static final String URL_PROJECT = "supervisionws.appspot.com";
     private static final String GA_ACOUNT = "UA-19185735-1";
 
@@ -82,7 +81,7 @@ public class StatistiqueServices /*implements Callable<String>*/ {
 
         ProjectConfiguration projectConfiguration = new ProjectConfiguration();
         projectConfiguration.setUrl(targetUrl);
-        projectConfiguration.setRequestMethod(TYPE_GET);
+        projectConfiguration.setRequestMethod(RequestMethodEnum.GET);
         //HttpResponse httpResponseGoogle =
         testConnectionService.testUrl(projectConfiguration);
     }
@@ -119,7 +118,7 @@ public class StatistiqueServices /*implements Callable<String>*/ {
 
         ProjectConfiguration projectConfiguration = new ProjectConfiguration();
         projectConfiguration.setUrl(targetUrl);
-        projectConfiguration.setRequestMethod(TYPE_GET);
+        projectConfiguration.setRequestMethod(RequestMethodEnum.GET);
         //HttpResponse httpResponseGoogle =
         testConnectionService.testUrl(projectConfiguration);
     }
@@ -148,7 +147,7 @@ public class StatistiqueServices /*implements Callable<String>*/ {
 
         ProjectConfiguration projectConfiguration = new ProjectConfiguration();
         projectConfiguration.setUrl(targetUrl);
-        projectConfiguration.setRequestMethod(TYPE_GET);
+        projectConfiguration.setRequestMethod(RequestMethodEnum.GET);
         //HttpResponse httpResponseGoogle =
         testConnectionService.testUrl(projectConfiguration);
     }
@@ -174,7 +173,7 @@ public class StatistiqueServices /*implements Callable<String>*/ {
 
         ProjectConfiguration projectConfiguration = new ProjectConfiguration();
         projectConfiguration.setUrl(targetUrl);
-        projectConfiguration.setRequestMethod(TYPE_GET);
+        projectConfiguration.setRequestMethod(RequestMethodEnum.GET);
 
         return testConnectionService.testUrl(projectConfiguration);
     }

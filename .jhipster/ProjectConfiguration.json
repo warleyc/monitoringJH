@@ -40,7 +40,9 @@
         {
             "fieldId": 5,
             "fieldName": "requestMethod",
-            "fieldType": "String",
+            "fieldType": "RequestMethodEnum",
+            "fieldIsEnum": true,
+            "fieldValues": "GET,PUT,POST,DELETE",
             "fieldNameCapitalized": "RequestMethod",
             "fieldNameUnderscored": "request_method",
             "fieldInJavaBeanMethod": "RequestMethod",

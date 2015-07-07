@@ -67,7 +67,7 @@ class ProjectConfigurationGatlingTest extends Simulation {
             .exec(http("Create new projectConfiguration")
             .put("/api/projectConfigurations")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "name":"SAMPLE_TEXT", "url":"SAMPLE_TEXT", "post":"SAMPLE_TEXT", "parametre":"SAMPLE_TEXT", "requestMethod":"SAMPLE_TEXT", "header":"SAMPLE_TEXT", "frequence":"0", "login":"SAMPLE_TEXT", "password2":"SAMPLE_TEXT", "checkMessage":"SAMPLE_TEXT", "lastError":"2020-01-01T00:00:00.000Z", "lastSucces":"2020-01-01T00:00:00.000Z", "actif":null, "alertSMS":null, "alertMail":null, "email":"SAMPLE_TEXT", "contentType":"SAMPLE_TEXT", "soap":null}""")).asJSON
+            .body(StringBody("""{"id":null, "name":"SAMPLE_TEXT", "url":"SAMPLE_TEXT", "post":"SAMPLE_TEXT", "parametre":"SAMPLE_TEXT", "requestMethod":null, "header":"SAMPLE_TEXT", "frequence":"0", "login":"SAMPLE_TEXT", "password2":"SAMPLE_TEXT", "checkMessage":"SAMPLE_TEXT", "lastError":"2020-01-01T00:00:00.000Z", "lastSucces":"2020-01-01T00:00:00.000Z", "actif":null, "alertSMS":null, "alertMail":null, "email":"SAMPLE_TEXT", "contentType":"SAMPLE_TEXT", "soap":null}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_projectConfiguration_url")))
             .pause(10)
