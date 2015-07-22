@@ -45,12 +45,6 @@ public class Response implements Serializable {
     @Column(name = "duration")
     private Long duration;
 
-    @Column(name = "configuration_name")
-    private String configurationName;
-
-    @Column(name = "configuration_id")
-    private Long configurationId;
-
     @Column(name = "email_sent")
     private Boolean emailSent;
 
@@ -112,22 +106,6 @@ public class Response implements Serializable {
 
     public void setDuration(Long duration) {
         this.duration = duration;
-    }
-
-    public String getConfigurationName() {
-        return configurationName;
-    }
-
-    public void setConfigurationName(String configurationName) {
-        this.configurationName = configurationName;
-    }
-
-    public Long getConfigurationId() {
-        return configurationId;
-    }
-
-    public void setConfigurationId(Long configurationId) {
-        this.configurationId = configurationId;
     }
 
     public Boolean getEmailSent() {
@@ -192,8 +170,6 @@ public class Response implements Serializable {
                 ", response='" + response + "'" +
                 ", code='" + code + "'" +
                 ", duration='" + duration + "'" +
-                ", configurationName='" + configurationName + "'" +
-                ", configurationId='" + configurationId + "'" +
                 ", emailSent='" + emailSent + "'" +
                 ", date='" + date + "'" +
                 ", stackTrace='" + stackTrace + "'" +

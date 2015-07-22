@@ -80,8 +80,6 @@ public class JdbcQueryDashboardRepositoryTest {
         response.setResponse(DEFAULT_RESPONSE);
         response.setCode(DEFAULT_CODE);
         response.setDuration(DEFAULT_DURATION);
-        response.setConfigurationName(DEFAULT_CONFIGURATION_NAME);
-        response.setConfigurationId(DEFAULT_CONFIGURATION_ID);
         response.setEmailSent(DEFAULT_EMAIL_SENT);
         response.setDate(DEFAULT_DATE);
     }

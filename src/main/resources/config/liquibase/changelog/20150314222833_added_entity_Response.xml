@@ -23,8 +23,6 @@
             <column name="response" type="varchar(5000)"/>
             <column name="code" type="integer"/>
             <column name="duration" type="bigint"/>
-            <column name="configuration_name" type="varchar(255)"/>
-            <column name="configuration_id" type="bigint"/>
             <column name="email_sent" type="bit"/>
             <column name="date" type="timestamp"/>
             <column name="stack_trace" type="varchar(5000)"/>

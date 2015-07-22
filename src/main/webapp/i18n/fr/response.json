@@ -17,8 +17,6 @@
             "response": "Response",
             "code": "Code",
             "duration": "Duration",
-            "configurationName": "ConfigurationName",
-            "configurationId": "ConfigurationId",
             "emailSent": "EmailSent",
             "date": "Date",
             "stackTrace": "StackTrace",

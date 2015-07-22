@@ -60,7 +60,7 @@ angular.module('monitoringApp')
                         size: 'lg',
                         resolve: {
                             entity: function () {
-                                return {type: null, message: null, response: null, code: null, duration: null, configurationName: null, configurationId: null, emailSent: null, date: null, stackTrace: null, id: null};
+                                return {type: null, message: null, response: null, code: null, duration: null, emailSent: null, date: null, stackTrace: null, id: null};
                             }
                         }
                     }).result.then(function(result) {

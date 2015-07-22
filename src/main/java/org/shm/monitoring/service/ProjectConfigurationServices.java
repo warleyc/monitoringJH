@@ -157,10 +157,7 @@ public class ProjectConfigurationServices {
         log.setDuration(httpResponse.getDuration());
         log.setMessage(httpResponse.getMessage());
         log.setCode(httpResponse.getCode());
-        if (httpResponse.getProjectConfiguration() != null) {
-            log.setConfigurationName(httpResponse.getProjectConfiguration().getName());
-            log.setConfigurationId(httpResponse.getProjectConfiguration().getId());
-        }
+        log.setProjectConfiguration(httpResponse.getProjectConfiguration());
 
         if (isSucces(httpResponse)) {
             log.setType(ReponseTypeEnum.INFO);

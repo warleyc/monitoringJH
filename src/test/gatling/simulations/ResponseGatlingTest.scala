@@ -67,7 +67,7 @@ class ResponseGatlingTest extends Simulation {
             .exec(http("Create new response")
             .post("/api/responses")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "type":null, "message":"SAMPLE_TEXT", "response":"SAMPLE_TEXT", "code":"0", "duration":null, "configurationName":"SAMPLE_TEXT", "configurationId":null, "emailSent":null, "date":"2020-01-01T00:00:00.000Z", "stackTrace":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null, "type":null, "message":"SAMPLE_TEXT", "response":"SAMPLE_TEXT", "code":"0", "duration":null, "emailSent":null, "date":"2020-01-01T00:00:00.000Z", "stackTrace":"SAMPLE_TEXT"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_response_url")))
             .pause(10)

@@ -55,24 +55,6 @@
             "fieldValidate": false
         },
         {
-            "fieldId": 6,
-            "fieldName": "configurationName",
-            "fieldType": "String",
-            "fieldNameCapitalized": "ConfigurationName",
-            "fieldNameUnderscored": "configuration_name",
-            "fieldInJavaBeanMethod": "ConfigurationName",
-            "fieldValidate": false
-        },
-        {
-            "fieldId": 7,
-            "fieldName": "configurationId",
-            "fieldType": "Long",
-            "fieldNameCapitalized": "ConfigurationId",
-            "fieldNameUnderscored": "configuration_id",
-            "fieldInJavaBeanMethod": "ConfigurationId",
-            "fieldValidate": false
-        },
-        {
             "fieldId": 8,
             "fieldName": "emailSent",
             "fieldType": "Boolean",

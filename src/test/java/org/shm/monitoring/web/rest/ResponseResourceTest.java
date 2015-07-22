@@ -59,11 +59,6 @@ public class ResponseResourceTest {
 
     private static final Long DEFAULT_DURATION = 0L;
     private static final Long UPDATED_DURATION = 1L;
-    private static final String DEFAULT_CONFIGURATION_NAME = "SAMPLE_TEXT";
-    private static final String UPDATED_CONFIGURATION_NAME = "UPDATED_TEXT";
-
-    private static final Long DEFAULT_CONFIGURATION_ID = 0L;
-    private static final Long UPDATED_CONFIGURATION_ID = 1L;
 
     private static final Boolean DEFAULT_EMAIL_SENT = false;
     private static final Boolean UPDATED_EMAIL_SENT = true;
@@ -97,8 +92,6 @@ public class ResponseResourceTest {
         response.setResponse(DEFAULT_RESPONSE);
         response.setCode(DEFAULT_CODE);
         response.setDuration(DEFAULT_DURATION);
-        response.setConfigurationName(DEFAULT_CONFIGURATION_NAME);
-        response.setConfigurationId(DEFAULT_CONFIGURATION_ID);
         response.setEmailSent(DEFAULT_EMAIL_SENT);
         response.setDate(DEFAULT_DATE);
         response.setStackTrace(DEFAULT_STACK_TRACE);
@@ -124,8 +117,6 @@ public class ResponseResourceTest {
         assertThat(testResponse.getResponse()).isEqualTo(DEFAULT_RESPONSE);
         assertThat(testResponse.getCode()).isEqualTo(DEFAULT_CODE);
         assertThat(testResponse.getDuration()).isEqualTo(DEFAULT_DURATION);
-        assertThat(testResponse.getConfigurationName()).isEqualTo(DEFAULT_CONFIGURATION_NAME);
-        assertThat(testResponse.getConfigurationId()).isEqualTo(DEFAULT_CONFIGURATION_ID);
         assertThat(testResponse.getEmailSent()).isEqualTo(DEFAULT_EMAIL_SENT);
         assertThat(testResponse.getDate().toDateTime(DateTimeZone.UTC)).isEqualTo(DEFAULT_DATE);
         assertThat(testResponse.getStackTrace()).isEqualTo(DEFAULT_STACK_TRACE);
@@ -147,8 +138,6 @@ public class ResponseResourceTest {
                 .andExpect(jsonPath("$.[*].response").value(hasItem(DEFAULT_RESPONSE.toString())))
                 .andExpect(jsonPath("$.[*].code").value(hasItem(DEFAULT_CODE)))
                 .andExpect(jsonPath("$.[*].duration").value(hasItem(DEFAULT_DURATION.intValue())))
-                .andExpect(jsonPath("$.[*].configurationName").value(hasItem(DEFAULT_CONFIGURATION_NAME.toString())))
-                .andExpect(jsonPath("$.[*].configurationId").value(hasItem(DEFAULT_CONFIGURATION_ID.intValue())))
                 .andExpect(jsonPath("$.[*].emailSent").value(hasItem(DEFAULT_EMAIL_SENT.booleanValue())))
                 .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE_STR)))
                 .andExpect(jsonPath("$.[*].stackTrace").value(hasItem(DEFAULT_STACK_TRACE.toString())));
@@ -170,8 +159,6 @@ public class ResponseResourceTest {
             .andExpect(jsonPath("$.response").value(DEFAULT_RESPONSE.toString()))
             .andExpect(jsonPath("$.code").value(DEFAULT_CODE))
             .andExpect(jsonPath("$.duration").value(DEFAULT_DURATION.intValue()))
-            .andExpect(jsonPath("$.configurationName").value(DEFAULT_CONFIGURATION_NAME.toString()))
-            .andExpect(jsonPath("$.configurationId").value(DEFAULT_CONFIGURATION_ID.intValue()))
             .andExpect(jsonPath("$.emailSent").value(DEFAULT_EMAIL_SENT.booleanValue()))
             .andExpect(jsonPath("$.date").value(DEFAULT_DATE_STR))
             .andExpect(jsonPath("$.stackTrace").value(DEFAULT_STACK_TRACE.toString()));
@@ -199,8 +186,6 @@ public class ResponseResourceTest {
         response.setResponse(UPDATED_RESPONSE);
         response.setCode(UPDATED_CODE);
         response.setDuration(UPDATED_DURATION);
-        response.setConfigurationName(UPDATED_CONFIGURATION_NAME);
-        response.setConfigurationId(UPDATED_CONFIGURATION_ID);
         response.setEmailSent(UPDATED_EMAIL_SENT);
         response.setDate(UPDATED_DATE);
         response.setStackTrace(UPDATED_STACK_TRACE);
@@ -218,8 +203,6 @@ public class ResponseResourceTest {
         assertThat(testResponse.getResponse()).isEqualTo(UPDATED_RESPONSE);
         assertThat(testResponse.getCode()).isEqualTo(UPDATED_CODE);
         assertThat(testResponse.getDuration()).isEqualTo(UPDATED_DURATION);
-        assertThat(testResponse.getConfigurationName()).isEqualTo(UPDATED_CONFIGURATION_NAME);
-        assertThat(testResponse.getConfigurationId()).isEqualTo(UPDATED_CONFIGURATION_ID);
         assertThat(testResponse.getEmailSent()).isEqualTo(UPDATED_EMAIL_SENT);
         assertThat(testResponse.getDate().toDateTime(DateTimeZone.UTC)).isEqualTo(UPDATED_DATE);
         assertThat(testResponse.getStackTrace()).isEqualTo(UPDATED_STACK_TRACE);
