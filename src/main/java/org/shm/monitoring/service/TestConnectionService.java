@@ -113,16 +113,16 @@ public class TestConnectionService {
             }
 
             httpResponse.setCode(httpURLConnection.getResponseCode());
-            httpResponse.setResponseMessage(httpURLConnection.getResponseMessage());
-            httpResponse.setResult(result);
+            httpResponse.setMessage(httpURLConnection.getResponseMessage());
+            httpResponse.setResponse(result);
         } catch (Exception e) {
 
-            httpResponse.setResponseMessage(e.getMessage());
+            httpResponse.setMessage(e.getMessage());
             final Writer writer = new StringWriter();
             final PrintWriter printWriter = new PrintWriter(writer);
             e.printStackTrace(printWriter);
             httpResponse.setStackTrace(writer.toString());
-            httpResponse.setResponseMessage(e.getMessage());
+            httpResponse.setMessage(e.getMessage());
             log.warn("une erreur :" +e.getMessage());
         }
         return httpResponse;

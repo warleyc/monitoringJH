@@ -114,7 +114,7 @@ public class ProjectConfigurationResource {
     /**
      * LAUNCH  /projectConfigurations/launch/:id -> launch the "id" projectConfiguration.
      */
-    @RequestMapping(value = "/projectConfigurations/launch/{id}",
+    @RequestMapping(value = "/projectConfigurations/{id}/launch",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed

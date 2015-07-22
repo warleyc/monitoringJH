@@ -4,7 +4,9 @@
         {
             "fieldId": 1,
             "fieldName": "type",
-            "fieldType": "String",
+            "fieldType": "ReponseTypeEnum",
+            "fieldIsEnum": true,
+            "fieldValues": "ERROR,INFO",
             "fieldNameCapitalized": "Type",
             "fieldNameUnderscored": "type",
             "fieldValidate": false

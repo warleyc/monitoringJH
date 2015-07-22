@@ -53,7 +53,7 @@ public class StatistiqueServices /*implements Callable<String>*/ {
         String category = log.getType();
         String action = URLEncoder.encode(url, "UTF-8");
         String label = null;
-        int value = (int) httpResponse.getTime();
+        int value =  httpResponse.getDuration().intValue();
         int screenWidth = 1280;
         int screenHeight = 1024;
         Event event = new Event(1, 1, accountId, randomVal, timestampFirst,
@@ -69,7 +69,7 @@ public class StatistiqueServices /*implements Callable<String>*/ {
         //
 
         String utme = "5(" + log.getType() + "*" + URLEncoder.encode(url, "UTF-8")
-            + ")(" + httpResponse.getTime() + ")";
+            + ")(" + httpResponse.getDuration() + ")";
 
         targetUrl = "http://www.google-analytics.com/__utm.gif?utmwv=4.8.6&utmn=1308786022&utmhn="
             + utmhn

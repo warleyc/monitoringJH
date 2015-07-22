@@ -93,24 +93,31 @@ angular.module('monitoringApp')
                         $state.go('^');
                     })
                 }]
-            }).state('projectConfigurationLaunch', {
-                parent: 'entity',
-                url: '/projectConfiguration/:id',
-                data: {
-                    roles: ['ROLE_USER'],
-                    pageTitle: 'monitoringApp.projectConfiguration.detail.title'
-                },
-                views: {
-                    'content@': {
-                        templateUrl: 'scripts/app/entities/projectConfiguration/projectConfiguration-launch.html',
-                        controller: 'ProjectConfigurationDetailController'
+            }).state('projectConfiguration.launch', {
+                    parent: 'projectConfiguration',
+                    url: '/{id}/launch',
+                    data: {
+                        roles: ['ROLE_USER'],
+                        pageTitle: 'monitoringApp.response.detail.title'
+                    },
+                    views: {
+                        'content@': {
+                            templateUrl: 'scripts/app/entities/response/response-detail.html',
+                            controller: 'ProjectConfigurationLaunch'
+                        }
+                    },
+                    resolve: {
+                        translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                            $translatePartialLoader.addPart('response');
+                            return $translate.refresh();
+                        }],
+                        entity: ['$stateParams', 'Response','$http', function($stateParams, ProjectConfiguration,$http) {
+                            return $http.get('api/projectConfigurations/'+$stateParams.id+'/launch').then(function (response) {
+                                return response.data;
+                            });
+
+
+                        }]
                     }
-                },
-                resolve: {
-                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                        $translatePartialLoader.addPart('response');
-                        return $translate.refresh();
-                    }]
-                }
-            });
+                });
     });

@@ -94,7 +94,7 @@ public class ProjectConfigurationServices {
      * @param projectConfiguration
      * @return
      */
-    public HttpResponse testAndSendAlert(ProjectConfiguration projectConfiguration) {
+    public void testAndSendAlert(ProjectConfiguration projectConfiguration) {
 
         HttpResponse httpResponse = testAndSaveLog(projectConfiguration);
 
@@ -116,7 +116,6 @@ public class ProjectConfigurationServices {
         }
         projectConfigurationRepository.save(projectConfiguration);
 
-        return httpResponse;
 
     }
 
@@ -133,7 +132,7 @@ public class ProjectConfigurationServices {
 
         long duration = System.currentTimeMillis() - start;
 
-        httpResponse.setTime(duration);
+        httpResponse.setDuration(duration);
         save(httpResponse);
 
         return httpResponse;
@@ -143,19 +142,19 @@ public class ProjectConfigurationServices {
      *
      * @param httpResponse
      */
-    private void save(HttpResponse httpResponse) {
+    private Response save(HttpResponse httpResponse) {
         Response log = new Response();
         log.setDate(DateTime.now());
 
-        if (httpResponse != null && httpResponse.getResult() != null) {
-            if (httpResponse.getResult().length() > 499) {
-                log.setResponse(httpResponse.getResult().substring(0, 499));
+        if (httpResponse != null && httpResponse.getResponse() != null) {
+            if (httpResponse.getResponse().length() > 499) {
+                log.setResponse(httpResponse.getResponse().substring(0, 499));
             } else {
-                log.setResponse(httpResponse.getResult());
+                log.setResponse(httpResponse.getResponse());
             }
         }
-        log.setDuration(httpResponse.getTime());
-        log.setMessage(httpResponse.getResponseMessage());
+        log.setDuration(httpResponse.getDuration());
+        log.setMessage(httpResponse.getMessage());
         log.setCode(httpResponse.getCode());
         if (httpResponse.getProjectConfiguration() != null) {
             log.setConfigurationName(httpResponse.getProjectConfiguration().getName());
@@ -172,11 +171,12 @@ public class ProjectConfigurationServices {
             responseRepository.save(log);
         } catch (Exception e) {
             // TODO PAS BO
-            httpResponse.setResponseMessage(httpResponse.getResponseMessage() + " Sauvegarde KO " + e.getMessage());
+            httpResponse.setMessage(httpResponse.getMessage() + " Sauvegarde KO " + e.getMessage());
         }
 
         sendStatistiques(httpResponse, log);
 
+        return log;
 
     }
 
@@ -186,7 +186,7 @@ public class ProjectConfigurationServices {
      * @return
      */
     private boolean isSucces(HttpResponse httpResponse) {
-        return httpResponse.getCode() == 200
+        return httpResponse.getCode()!=null && httpResponse.getCode() == 200
             && checkMessage(httpResponse.getProjectConfiguration().getCheckMessage(),
             httpResponse);
     }
@@ -217,7 +217,7 @@ public class ProjectConfigurationServices {
         String utme = "";
         try {
             utme = "5(" + log.getType() + "*" + URLEncoder.encode(url, "UTF-8")
-                + ")(" + httpResponse.getTime() + ")";
+                + ")(" + httpResponse.getDuration() + ")";
         } catch (UnsupportedEncodingException e) {
             logger.error("Erreur sur l'encodage", e);
 
@@ -301,8 +301,8 @@ public class ProjectConfigurationServices {
 
     private boolean checkMessage(String string, HttpResponse httpResponse) {
         return string == null
-            || (httpResponse.getResult() != null && httpResponse
-            .getResult().contains(string));
+            || (httpResponse.getResponse() != null && httpResponse
+            .getResponse().contains(string));
     }
 
 }

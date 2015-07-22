@@ -39,7 +39,7 @@ public class SendNotification {
 
 
             if (httpResponse.getCode() != 200) {
-                subject="[ERROR][" + projectConfiguration.getName() + "] code:" + httpResponse.getCode() + " message:" + httpResponse.getResponseMessage();
+                subject="[ERROR][" + projectConfiguration.getName() + "] code:" + httpResponse.getCode() + " message:" + httpResponse.getMessage();
             } else {
                 // retries = warning
                 if (httpResponse.getRetries() == 0) {
