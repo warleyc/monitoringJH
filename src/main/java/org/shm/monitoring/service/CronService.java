@@ -2,6 +2,7 @@ package org.shm.monitoring.service;
 
 import com.codahale.metrics.annotation.Timed;
 import org.joda.time.DateTime;
+import org.shm.monitoring.domain.enumeration.ReponseTypeEnum;
 import org.shm.monitoring.repository.ResponseRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -68,18 +69,18 @@ public class CronService {
     @Scheduled(cron = "0 0 5 * * *")
     public void purgeInfo() {
         log.info("purge INFO 20 days ");
-        purgeAndSendNotification("INFO", 20);
+        purgeAndSendNotification(ReponseTypeEnum.INFO, 20);
     }
 
     @Scheduled(cron = "0 0 6 * * *")
     //@Scheduled(cron = "0 */5 * * * *")
     public void purgeError() {
         log.info("Purge des logs de type erreur au bout d'un ans!");
-        purgeAndSendNotification("ERROR", 365);
+        purgeAndSendNotification(ReponseTypeEnum.ERROR, 365);
     }
 
 
-    public void purgeAndSendNotification(String type, int duree) {
+    public void purgeAndSendNotification(ReponseTypeEnum type, int duree) {
 
         log.info("Purge");
         long start = System.currentTimeMillis();
@@ -99,10 +100,10 @@ public class CronService {
     }
 
     public Long purget() {
-        return purget("INFO", 6);
+        return purget(ReponseTypeEnum.INFO, 6);
     }
 
-    public Long purget(String type, int duree) {
+    public Long purget(ReponseTypeEnum type, int duree) {
         DateTime date = DateTime.now();
         date.minusDays(duree);
         return responseRepository.deleteByTypeAndDateBefore(type, date);

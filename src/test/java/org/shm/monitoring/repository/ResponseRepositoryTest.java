@@ -120,7 +120,7 @@ public class ResponseRepositoryTest {
         responseRepository.save(response);
         databaseSizeBeforeCreate = responseRepository.findAll().size();
         assertThat(databaseSizeBeforeCreate ).isEqualTo(1);
-        List<Response> list=responseRepository.removeByType("ERROR");
+        List<Response> list=responseRepository.removeByType(ReponseTypeEnum.ERROR);
         assertThat(list.size() ).isEqualTo(1);
 
         databaseSizeBeforeCreate = responseRepository.findAll().size();
@@ -143,7 +143,7 @@ public class ResponseRepositoryTest {
         responseRepository.save(response);
         databaseSizeBeforeCreate = responseRepository.findAll().size();
         assertThat(databaseSizeBeforeCreate ).isEqualTo(1);
-        Long count=responseRepository.deleteByType("ERROR");
+        Long count=responseRepository.deleteByType(ReponseTypeEnum.ERROR);
         assertThat(count ).isEqualTo(1);
         databaseSizeBeforeCreate = responseRepository.findAll().size();
         assertThat(databaseSizeBeforeCreate ).isEqualTo(0);
@@ -187,7 +187,7 @@ public class ResponseRepositoryTest {
         responseRepository.save(response);
         databaseSizeBeforeCreate = responseRepository.findAll().size();
         assertThat(databaseSizeBeforeCreate ).isEqualTo(1);
-        Long count=responseRepository.deleteByTypeAndDateBefore("ERROR", DateTime.now().minusDays(-1));
+        Long count=responseRepository.deleteByTypeAndDateBefore(ReponseTypeEnum.ERROR, DateTime.now().minusDays(-1));
         assertThat(count ).isEqualTo(1);
         databaseSizeBeforeCreate = responseRepository.findAll().size();
         assertThat(databaseSizeBeforeCreate ).isEqualTo(0);
@@ -209,7 +209,7 @@ public class ResponseRepositoryTest {
         responseRepository.save(response);
         databaseSizeBeforeCreate = responseRepository.findAll().size();
         assertThat(databaseSizeBeforeCreate ).isEqualTo(1);
-        Page<Response> list=responseRepository.findByTypeOrderByIdDesc("ERROR", PaginationUtil.generatePageRequest(0, 10));
+        Page<Response> list=responseRepository.findByTypeOrderByIdDesc(ReponseTypeEnum.ERROR, PaginationUtil.generatePageRequest(0, 10));
         assertThat(list.getTotalElements()).isEqualTo(1);
 
     }

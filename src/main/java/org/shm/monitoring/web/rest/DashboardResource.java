@@ -60,7 +60,7 @@ public class DashboardResource {
         throws URISyntaxException {
         DashboardDTO dashboardDTO = new DashboardDTO();
 
-        Page<Response> page = responseRepository.findByTypeOrderByIdDesc(ReponseTypeEnum.ERROR.name(),PaginationUtil.generatePageRequest(0, 10));
+        Page<Response> page = responseRepository.findByTypeOrderByIdDesc(ReponseTypeEnum.ERROR,PaginationUtil.generatePageRequest(0, 10));
             //responseRepository.findAll(PaginationUtil.generatePageRequest(0, 10));
         List<ProjectConfiguration> projectConfigurations = projectConfigurationRepository.findAll();
         List<SerieDTO> series=jdbcQueryDashBoardRepository.selectSeries();

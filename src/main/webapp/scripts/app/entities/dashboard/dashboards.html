@@ -73,7 +73,7 @@
                     <thead>
                     <tr>
                         <th>Id</th>
-                        <th translate="monitoringApp.response.configurationName">ConfigurationName</th>
+                        <th translate="monitoringApp.response.projectConfiguration">ConfigurationName</th>
                         <th translate="monitoringApp.response.type">Type</th>
                         <th translate="monitoringApp.response.message">Message</th>
                         <th translate="monitoringApp.response.code">Code</th>
@@ -85,7 +85,7 @@
                     <tbody>
                     <tr ng-repeat="response in dashboards.responses">
                         <td>{{response.id}}</td>
-                        <td><a ui-sref="responseDetail({id:response.id})">{{response.configurationName}}</a></td>
+                        <td><a ui-sref="responseDetail({id:response.id})">{{response.projectConfiguration.name}}</a></td>
                         <td>{{response.type}}</td>
                         <td>{{response.message}}</td>
                         <td>{{response.code}}</td>
