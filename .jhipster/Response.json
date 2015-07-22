@@ -8,7 +8,7 @@
             "otherEntityName": "projectConfiguration",
             "relationshipType": "many-to-one",
             "otherEntityNameCapitalized": "ProjectConfiguration",
-            "otherEntityField": "response"
+            "otherEntityField": "name"
         }
     ],
     "fields": [
