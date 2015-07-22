@@ -1,5 +1,16 @@
 {
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "projectConfiguration",
+            "relationshipNameCapitalized": "ProjectConfiguration",
+            "relationshipFieldName": "projectConfiguration",
+            "otherEntityName": "projectConfiguration",
+            "relationshipType": "many-to-one",
+            "otherEntityNameCapitalized": "ProjectConfiguration",
+            "otherEntityField": "response"
+        }
+    ],
     "fields": [
         {
             "fieldId": 1,
@@ -77,6 +88,15 @@
             "fieldNameCapitalized": "Date",
             "fieldNameUnderscored": "date",
             "fieldInJavaBeanMethod": "Date",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 10,
+            "fieldName": "stackTrace",
+            "fieldType": "String",
+            "fieldNameCapitalized": "StackTrace",
+            "fieldNameUnderscored": "stack_trace",
+            "fieldInJavaBeanMethod": "StackTrace",
             "fieldValidate": false
         }
     ],

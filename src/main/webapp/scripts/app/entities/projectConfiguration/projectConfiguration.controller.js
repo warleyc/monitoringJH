@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('monitoringApp')
-    .controller('ProjectConfigurationController', function ($scope, ProjectConfiguration,ProjectConfigurationLaunch, ParseLinks) {
+    .controller('ProjectConfigurationController', function ($scope, ProjectConfiguration, ParseLinks) {
         $scope.projectConfigurations = [];
         $scope.page = 1;
         $scope.loadAll = function() {
