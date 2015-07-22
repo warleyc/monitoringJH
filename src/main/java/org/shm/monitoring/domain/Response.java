@@ -11,8 +11,11 @@ import org.joda.time.DateTime;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
+import org.shm.monitoring.domain.enumeration.ReponseTypeEnum;
 
 /**
  * A Response.
@@ -26,8 +29,9 @@ public class Response implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "type")
-    private String type;
+    private ReponseTypeEnum type;
 
     @Column(name = "message")
     private String message;
@@ -56,6 +60,12 @@ public class Response implements Serializable {
     @Column(name = "date")
     private DateTime date;
 
+    @Column(name = "stack_trace")
+    private String stackTrace;
+
+    @ManyToOne
+    private ProjectConfiguration projectConfiguration;
+
     public Long getId() {
         return id;
     }
@@ -64,11 +74,11 @@ public class Response implements Serializable {
         this.id = id;
     }
 
-    public String getType() {
+    public ReponseTypeEnum getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(ReponseTypeEnum type) {
         this.type = type;
     }
 
@@ -136,6 +146,22 @@ public class Response implements Serializable {
         this.date = date;
     }
 
+    public String getStackTrace() {
+        return stackTrace;
+    }
+
+    public void setStackTrace(String stackTrace) {
+        this.stackTrace = stackTrace;
+    }
+
+    public ProjectConfiguration getProjectConfiguration() {
+        return projectConfiguration;
+    }
+
+    public void setProjectConfiguration(ProjectConfiguration projectConfiguration) {
+        this.projectConfiguration = projectConfiguration;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -170,6 +196,7 @@ public class Response implements Serializable {
                 ", configurationId='" + configurationId + "'" +
                 ", emailSent='" + emailSent + "'" +
                 ", date='" + date + "'" +
+                ", stackTrace='" + stackTrace + "'" +
                 '}';
     }
 }

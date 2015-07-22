@@ -31,6 +31,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import org.shm.monitoring.domain.enumeration.ReponseTypeEnum;
 
 /**
  * Test class for the ResponseResource REST controller.
@@ -45,8 +46,9 @@ public class ResponseResourceTest {
 
     private static final DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
-    private static final String DEFAULT_TYPE = "SAMPLE_TEXT";
-    private static final String UPDATED_TYPE = "UPDATED_TEXT";
+
+    private static final ReponseTypeEnum DEFAULT_TYPE = ReponseTypeEnum.ERROR;
+    private static final ReponseTypeEnum UPDATED_TYPE = ReponseTypeEnum.INFO;
     private static final String DEFAULT_MESSAGE = "SAMPLE_TEXT";
     private static final String UPDATED_MESSAGE = "UPDATED_TEXT";
     private static final String DEFAULT_RESPONSE = "SAMPLE_TEXT";
@@ -69,6 +71,8 @@ public class ResponseResourceTest {
     private static final DateTime DEFAULT_DATE = new DateTime(0L, DateTimeZone.UTC);
     private static final DateTime UPDATED_DATE = new DateTime(DateTimeZone.UTC).withMillisOfSecond(0);
     private static final String DEFAULT_DATE_STR = dateTimeFormatter.print(DEFAULT_DATE);
+    private static final String DEFAULT_STACK_TRACE = "SAMPLE_TEXT";
+    private static final String UPDATED_STACK_TRACE = "UPDATED_TEXT";
 
     @Inject
     private ResponseRepository responseRepository;
@@ -97,6 +101,7 @@ public class ResponseResourceTest {
         response.setConfigurationId(DEFAULT_CONFIGURATION_ID);
         response.setEmailSent(DEFAULT_EMAIL_SENT);
         response.setDate(DEFAULT_DATE);
+        response.setStackTrace(DEFAULT_STACK_TRACE);
     }
 
     @Test
@@ -123,6 +128,7 @@ public class ResponseResourceTest {
         assertThat(testResponse.getConfigurationId()).isEqualTo(DEFAULT_CONFIGURATION_ID);
         assertThat(testResponse.getEmailSent()).isEqualTo(DEFAULT_EMAIL_SENT);
         assertThat(testResponse.getDate().toDateTime(DateTimeZone.UTC)).isEqualTo(DEFAULT_DATE);
+        assertThat(testResponse.getStackTrace()).isEqualTo(DEFAULT_STACK_TRACE);
     }
 
     @Test
@@ -144,7 +150,8 @@ public class ResponseResourceTest {
                 .andExpect(jsonPath("$.[*].configurationName").value(hasItem(DEFAULT_CONFIGURATION_NAME.toString())))
                 .andExpect(jsonPath("$.[*].configurationId").value(hasItem(DEFAULT_CONFIGURATION_ID.intValue())))
                 .andExpect(jsonPath("$.[*].emailSent").value(hasItem(DEFAULT_EMAIL_SENT.booleanValue())))
-                .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE_STR)));
+                .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE_STR)))
+                .andExpect(jsonPath("$.[*].stackTrace").value(hasItem(DEFAULT_STACK_TRACE.toString())));
     }
 
     @Test
@@ -166,7 +173,8 @@ public class ResponseResourceTest {
             .andExpect(jsonPath("$.configurationName").value(DEFAULT_CONFIGURATION_NAME.toString()))
             .andExpect(jsonPath("$.configurationId").value(DEFAULT_CONFIGURATION_ID.intValue()))
             .andExpect(jsonPath("$.emailSent").value(DEFAULT_EMAIL_SENT.booleanValue()))
-            .andExpect(jsonPath("$.date").value(DEFAULT_DATE_STR));
+            .andExpect(jsonPath("$.date").value(DEFAULT_DATE_STR))
+            .andExpect(jsonPath("$.stackTrace").value(DEFAULT_STACK_TRACE.toString()));
     }
 
     @Test
@@ -195,6 +203,7 @@ public class ResponseResourceTest {
         response.setConfigurationId(UPDATED_CONFIGURATION_ID);
         response.setEmailSent(UPDATED_EMAIL_SENT);
         response.setDate(UPDATED_DATE);
+        response.setStackTrace(UPDATED_STACK_TRACE);
         restResponseMockMvc.perform(put("/api/responses")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
                 .content(TestUtil.convertObjectToJsonBytes(response)))
@@ -213,6 +222,7 @@ public class ResponseResourceTest {
         assertThat(testResponse.getConfigurationId()).isEqualTo(UPDATED_CONFIGURATION_ID);
         assertThat(testResponse.getEmailSent()).isEqualTo(UPDATED_EMAIL_SENT);
         assertThat(testResponse.getDate().toDateTime(DateTimeZone.UTC)).isEqualTo(UPDATED_DATE);
+        assertThat(testResponse.getStackTrace()).isEqualTo(UPDATED_STACK_TRACE);
     }
 
     @Test

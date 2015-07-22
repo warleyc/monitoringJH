@@ -50,7 +50,7 @@ public class StatistiqueServices /*implements Callable<String>*/ {
         int timestampPrevious = 0;
         int timestampCurrent = 0;
         int visits = 0;
-        String category = log.getType();
+        String category = log.getType().name();
         String action = URLEncoder.encode(url, "UTF-8");
         String label = null;
         int value =  httpResponse.getDuration().intValue();

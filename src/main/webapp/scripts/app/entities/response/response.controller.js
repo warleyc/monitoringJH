@@ -45,6 +45,6 @@ angular.module('monitoringApp')
         };
 
         $scope.clear = function () {
-            $scope.response = {type: null, message: null, response: null, code: null, duration: null, configurationName: null, configurationId: null, emailSent: null, date: null, id: null};
+            $scope.response = {type: null, message: null, response: null, code: null, duration: null, configurationName: null, configurationId: null, emailSent: null, date: null, stackTrace: null, id: null};
         };
     });

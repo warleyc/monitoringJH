@@ -14,25 +14,7 @@ public class HttpResponse extends Response implements Serializable {
 
     private Status status;
 
-    private ProjectConfiguration projectConfiguration;
-    private String stackTrace;
     private int retries = 0;
-
-    public String getStackTrace() {
-        return stackTrace;
-    }
-
-    public void setStackTrace(String stackTrace) {
-        this.stackTrace = stackTrace;
-    }
-
-    public ProjectConfiguration getProjectConfiguration() {
-        return projectConfiguration;
-    }
-
-    public void setProjectConfiguration(ProjectConfiguration projectConfiguration) {
-        this.projectConfiguration = projectConfiguration;
-    }
 
     public int getRetries() {
         return retries;

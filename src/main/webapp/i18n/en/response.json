@@ -20,7 +20,9 @@
             "configurationName": "ConfigurationName",
             "configurationId": "ConfigurationId",
             "emailSent": "EmailSent",
-            "date": "Date"
+            "date": "Date",
+            "stackTrace": "StackTrace",
+            "projectConfiguration": "projectConfiguration"
         }
     }
 }

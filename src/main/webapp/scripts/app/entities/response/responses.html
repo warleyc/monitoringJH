@@ -51,6 +51,8 @@
                     <th translate="monitoringApp.response.configurationId">ConfigurationId</th>
                     <th translate="monitoringApp.response.emailSent">EmailSent</th>
                     <th translate="monitoringApp.response.date">Date</th>
+                    <th translate="monitoringApp.response.stackTrace">StackTrace</th>
+                    <th translate="monitoringApp.response.projectConfiguration">projectConfiguration</th>
                     <th></th>
                 </tr>
             </thead>
@@ -66,6 +68,8 @@
                     <td>{{response.configurationId}}</td>
                     <td>{{response.emailSent}}</td>
                     <td>{{response.date}}</td>
+                    <td>{{response.stackTrace}}</td>
+                    <td>{{response.projectConfiguration.response}}</td>
                     <td>
                         <button type="submit"
                                 ui-sref="response.detail({id:response.id})"

@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
 import org.shm.monitoring.Application;
 import org.shm.monitoring.domain.Response;
+import org.shm.monitoring.domain.enumeration.ReponseTypeEnum;
 import org.shm.monitoring.security.AuthoritiesConstants;
 import org.shm.monitoring.security.SecurityUtils;
 import org.shm.monitoring.web.rest.ResponseResource;
@@ -56,8 +57,8 @@ public class ResponseRepositoryTest {
 
     private static final DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
-    private static final String DEFAULT_TYPE = "ERROR";
-    private static final String UPDATED_TYPE = "INFO";
+    private static final ReponseTypeEnum DEFAULT_TYPE = ReponseTypeEnum.ERROR;
+    private static final ReponseTypeEnum UPDATED_TYPE = ReponseTypeEnum.INFO;
     private static final String DEFAULT_MESSAGE = "SAMPLE_TEXT";
     private static final String UPDATED_MESSAGE = "UPDATED_TEXT";
     private static final String DEFAULT_RESPONSE = "SAMPLE_TEXT";

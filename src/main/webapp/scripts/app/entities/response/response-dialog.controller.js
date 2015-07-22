@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('monitoringApp').controller('ResponseDialogController',
-    ['$scope', '$stateParams', '$modalInstance', 'entity', 'Response',
-        function($scope, $stateParams, $modalInstance, entity, Response) {
+    ['$scope', '$stateParams', '$modalInstance', 'entity', 'Response', 'ProjectConfiguration',
+        function($scope, $stateParams, $modalInstance, entity, Response, ProjectConfiguration) {
 
         $scope.response = entity;
+        $scope.projectconfigurations = ProjectConfiguration.query();
         $scope.load = function(id) {
             Response.get({id : id}, function(result) {
                 $scope.response = result;

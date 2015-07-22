@@ -27,9 +27,17 @@
             <column name="configuration_id" type="bigint"/>
             <column name="email_sent" type="bit"/>
             <column name="date" type="timestamp"/>
+            <column name="stack_trace" type="varchar(5000)"/>
+            <column name="projectconfiguration_id" type="bigint"/>
         </createTable>
         <dropDefaultValue tableName="RESPONSE" columnName="date" columnDataType="datetime"/>
 
+
+        <addForeignKeyConstraint baseColumnNames="projectconfiguration_id"
+                                 baseTableName="RESPONSE"
+                                 constraintName="fk_response_projectconfiguration_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="PROJECTCONFIGURATION"/>
 
     </changeSet>
 </databaseChangeLog>

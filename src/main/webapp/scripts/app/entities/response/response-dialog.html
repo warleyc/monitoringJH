@@ -15,8 +15,10 @@
 
         <div class="form-group">
             <label translate="monitoringApp.response.type" for="field_type">Type</label>
-            <input type="text" class="form-control" name="type" id="field_type"
-                    ng-model="response.type">
+            <select class="form-control" name="type" ng-model="response.type" id="field_type">
+               <option value="ERROR">ERROR</option>
+               <option value="INFO">INFO</option>
+            </select>
 
         </div>
         <div class="form-group">
@@ -67,7 +69,18 @@
                     ng-model="response.date" ng-model-options="{timezone: 'UTC'}">
 
         </div>
+        <div class="form-group">
+            <label translate="monitoringApp.response.stackTrace" for="field_stackTrace">StackTrace</label>
+            <input type="text" class="form-control" name="stackTrace" id="field_stackTrace"
+                    ng-model="response.stackTrace">
 
+        </div>
+
+        <div class="form-group">
+            <label translate="monitoringApp.response.projectConfiguration" for="field_projectConfiguration">projectConfiguration</label>
+            <select class="form-control" id="field_projectConfiguration" name="projectConfiguration" ng-model="response.projectConfiguration.id" ng-options="projectConfiguration.id as projectConfiguration.response for projectConfiguration in projectconfigurations">
+            </select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">

@@ -5,6 +5,7 @@ import com.codahale.metrics.annotation.Timed;
 import org.shm.monitoring.domain.ProjectConfiguration;
 import org.shm.monitoring.domain.Response;
 
+import org.shm.monitoring.domain.enumeration.ReponseTypeEnum;
 import org.shm.monitoring.repository.JdbcQueryDashBoardRepository;
 import org.shm.monitoring.repository.ProjectConfigurationRepository;
 import org.shm.monitoring.repository.ResponseRepository;
@@ -59,7 +60,7 @@ public class DashboardResource {
         throws URISyntaxException {
         DashboardDTO dashboardDTO = new DashboardDTO();
 
-        Page<Response> page = responseRepository.findByTypeOrderByIdDesc("ERROR",PaginationUtil.generatePageRequest(0, 10));
+        Page<Response> page = responseRepository.findByTypeOrderByIdDesc(ReponseTypeEnum.ERROR.name(),PaginationUtil.generatePageRequest(0, 10));
             //responseRepository.findAll(PaginationUtil.generatePageRequest(0, 10));
         List<ProjectConfiguration> projectConfigurations = projectConfigurationRepository.findAll();
         List<SerieDTO> series=jdbcQueryDashBoardRepository.selectSeries();

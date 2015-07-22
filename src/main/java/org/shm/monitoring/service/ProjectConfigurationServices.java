@@ -3,6 +3,7 @@ package org.shm.monitoring.service;
 import org.joda.time.DateTime;
 import org.shm.monitoring.domain.ProjectConfiguration;
 import org.shm.monitoring.domain.Response;
+import org.shm.monitoring.domain.enumeration.ReponseTypeEnum;
 import org.shm.monitoring.domain.enumeration.RequestMethodEnum;
 import org.shm.monitoring.repository.ProjectConfigurationRepository;
 import org.shm.monitoring.repository.ResponseRepository;
@@ -162,9 +163,9 @@ public class ProjectConfigurationServices {
         }
 
         if (isSucces(httpResponse)) {
-            log.setType("INFO");
+            log.setType(ReponseTypeEnum.INFO);
         } else {
-            log.setType("ERROR");
+            log.setType(ReponseTypeEnum.ERROR);
         }
 
         try {
