@@ -2,26 +2,36 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Notification</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
 <div>
-Configuration name : ${configuration.name} <br/>
-Http Code : ${httpResponse.code} <br/>
-Duration :${httpResponse.time}<br/>
-Response Message :${httpResponse.responseMessage}<br/>
-Header: ${httpResponse.header}<br/>
-cookies: ${httpResponse.cookies}<br/>
+
+    <p th:text="${configuration.name}">
+        Dear
+    </p>
+
+    Code <p th:text="${httpResponse.code}">
+</p>
 
 
-result: ${httpResponse.result}<br/>
-stackTrace: ${httpResponse.stackTrace}<br/>
+    Duration : <p th:text="${httpResponse.duration}">
+</p>
+
+
+    Response Message :
+    <p th:text="${httpResponse.message}">
+    </p>
+
+
+    result:
+    <p th:text="${httpResponse.code}">
+    </p>
+
+    stackTrace:
+    <p th:text="${httpResponse.stackTrace}">
+    </p>
 
 </div>
 </body>
 </html>
-
-
-
-
-

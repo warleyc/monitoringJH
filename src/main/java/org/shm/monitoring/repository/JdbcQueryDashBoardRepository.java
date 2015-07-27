@@ -42,11 +42,14 @@ public class JdbcQueryDashBoardRepository {
     List<SerieDTO> series = this.jdbcTemplate.query(
         "select name , test.m as month,  coalesce(nb,0) as nb\n" +
             "from  projectconfiguration\n" +
-            "cross join (SELECT X as  m\n" +
-            "  FROM SYSTEM_RANGE(1,12) ) test\n" +
-            "left join ( SELECT month(date) as month , projectconfiguration_id ,count(1) as nb FROM RESPONSE res " +
-            "where type='ERROR' \n" +
-            "group by month(date),projectconfiguration_id) on month  =test.m and id=projectconfiguration_id \n" +
+            "cross join (SELECT generate_series as  m\n" +
+            "FROM  generate_series(1,12) ) test \n" +
+        "left join ( " +
+            "            SELECT extract(MONTH  from date) as month , projectconfiguration_id ,count(1) as nb" +
+            "            FROM RESPONSE res " +
+            "            where type='ERROR' \n" +
+            "            group by extract(MONTH  from date),projectconfiguration_id" +
+            "          ) res on month  =test.m and id=projectconfiguration_id \n" +
             "order by name, m ",
         new ResultSetExtractor<List<SerieDTO> > (){
             public List<SerieDTO>  extractData(ResultSet rs) throws SQLException, DataAccessException {

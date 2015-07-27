@@ -34,69 +34,54 @@ public class SendNotification {
      */
     public boolean send(ProjectConfiguration projectConfiguration, HttpResponse httpResponse) {
 
-        String subject=null;
+
+        String subject = getSubject(projectConfiguration, httpResponse);
+        String htmlBody = getHtmlBody(projectConfiguration, httpResponse);
+        String email= projectConfiguration !=null? projectConfiguration.getEmail():null;
         try {
-
-
-            if (httpResponse.getCode() != 200) {
-                subject="[ERROR][" + projectConfiguration.getName() + "] code:" + httpResponse.getCode() + " message:" + httpResponse.getMessage();
-            } else {
-                // retries = warning
-                if (httpResponse.getRetries() == 0) {
-                    subject="[OK][" + projectConfiguration.getName() + "] is back to normal";
-                } else {
-                    subject="[WARNING][" + projectConfiguration.getName() + "]  is back to normal but after " + httpResponse.getRetries() + " fail";
-                }
-            }
-
-
-            final Context ctx = new Context(Locale.ENGLISH);
-            ctx.setVariable("httpResponse", httpResponse);
-            ctx.setVariable("configuration", projectConfiguration);
-            // Create the HTML body using Thymeleaf
-            String htmlBody = this.templateEngine.process("report.html", ctx);
-
-            String email= projectConfiguration !=null? projectConfiguration.getEmail():null;
             sendMessage(email,subject, htmlBody);
-
         } catch (Exception e) {
             log.warn("E-mail could not be sent to user '{}', exception is: {}", subject, e.getMessage());
+            return false;
         }
 
         return true;
     }
 
+    public String getSubject(ProjectConfiguration projectConfiguration, HttpResponse httpResponse) {
+        String subject=null;
+
+        if (httpResponse.getCode() != 200) {
+            subject="[ERROR][" + projectConfiguration.getName() + "] code:" + httpResponse.getCode() + " message:" + httpResponse.getMessage();
+        } else {
+            // retries = warning
+            if (httpResponse.getRetries() == 0) {
+                subject="[OK][" + projectConfiguration.getName() + "] is back to normal";
+            } else {
+                subject="[WARNING][" + projectConfiguration.getName() + "]  is back to normal but after " + httpResponse.getRetries() + " fail";
+            }
+        }
+        return subject;
+    }
+
+    public String getHtmlBody(ProjectConfiguration projectConfiguration, HttpResponse httpResponse) {
+        final Context ctx = new Context(Locale.ENGLISH);
+        ctx.setVariable("httpResponse", httpResponse);
+        ctx.setVariable("configuration", projectConfiguration);
+        // Create the HTML body using Thymeleaf
+        return this.templateEngine.process("notification", ctx);
+    }
+
     private void sendMessage(String email,String subject, String htmlBody) throws MessagingException,
         UnsupportedEncodingException  {
-/*
-        Message msg = getMessage(email);
-
-        Multipart mp = new MimeMultipart();
-
-        MimeBodyPart htmlPart = new MimeBodyPart();
-        htmlPart.setContent(htmlBody, "text/html");
-        mp.addBodyPart(htmlPart);
-
-        msg.setContent(mp);
-
-        // msg.setText(msgBody);
-        Transport.send(msg);
-*/
-
         mailService.sendEmail(email,subject,htmlBody,false,true);
     }
 
     public void sendNotification(String subject)  {
 
-
         try {
-            //Message msg = getMessage(null);
             Date date = Calendar.getInstance().getTime();
             SimpleDateFormat sdf = new SimpleDateFormat("E MM/dd/yyyy HH:mm:ss.SSS");
-            /*msg.setSubject(subject + sdf.format(date));
-            msg.setText("test");
-            Transport.send(msg);
-            */
             mailService.sendEmail("nicolas.crawley@gmail.com", subject+ sdf.format(date),"test",false,false);
 
         } catch (Exception e) {
@@ -109,9 +94,7 @@ public class SendNotification {
      *
      */
     public void sendNotification() {
-
         sendNotification("Notification: ");
-
     }
 
     /**
@@ -132,7 +115,7 @@ public class SendNotification {
 
         log.info("Before");
         // Create the HTML body using Thymeleaf
-        final String htmlContent = this.templateEngine.process("report.html", ctx);
+        final String htmlContent = this.templateEngine.process("report", ctx);
 
         sendMessage( email,subject, htmlContent);
 
